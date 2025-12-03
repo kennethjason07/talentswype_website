@@ -1,0 +1,102 @@
+.usp-section {
+  background: linear-gradient(180deg, rgba(26, 29, 36, 0.5) 0%, transparent 100%);
+}
+
+.usp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.usp-card {
+  padding: 2.5rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.usp-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.usp-card:hover::before {
+  transform: scaleX(1);
+}
+
+.usp-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  transition: all 0.3s ease;
+}
+
+.usp-pink .usp-icon {
+  background: linear-gradient(135deg, rgba(255, 106, 153, 0.3), rgba(255, 106, 153, 0.1));
+  color: var(--pink);
+  box-shadow: 0 8px 24px rgba(255, 106, 153, 0.3);
+}
+
+.usp-blue .usp-icon {
+  background: linear-gradient(135deg, rgba(92, 137, 255, 0.3), rgba(92, 137, 255, 0.1));
+  color: var(--blue);
+  box-shadow: 0 8px 24px rgba(92, 137, 255, 0.3);
+}
+
+.usp-green .usp-icon {
+  background: linear-gradient(135deg, rgba(77, 219, 120, 0.3), rgba(77, 219, 120, 0.1));
+  color: var(--green);
+  box-shadow: 0 8px 24px rgba(77, 219, 120, 0.3);
+}
+
+.usp-purple .usp-icon {
+  background: linear-gradient(135deg, rgba(182, 138, 255, 0.3), rgba(182, 138, 255, 0.1));
+  color: var(--purple);
+  box-shadow: 0 8px 24px rgba(182, 138, 255, 0.3);
+}
+
+.usp-orange .usp-icon {
+  background: linear-gradient(135deg, rgba(255, 158, 85, 0.3), rgba(255, 158, 85, 0.1));
+  color: var(--orange);
+  box-shadow: 0 8px 24px rgba(255, 158, 85, 0.3);
+}
+
+.usp-card:hover .usp-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.usp-card h4 {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin: 0;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .usp-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .usp-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .usp-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+  }
+}

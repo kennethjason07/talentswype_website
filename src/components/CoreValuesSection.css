@@ -1,0 +1,68 @@
+.values-section {
+  background: radial-gradient(circle at 30% 50%, rgba(182, 138, 255, 0.15) 0%, transparent 60%);
+}
+
+.values-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.value-chip {
+  padding: 1.25rem 2.5rem;
+  border-radius: 50px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.value-blue {
+  background: linear-gradient(135deg, rgba(92, 137, 255, 0.3), rgba(92, 137, 255, 0.1));
+  color: var(--blue);
+  border: 2px solid var(--blue);
+  box-shadow: 0 8px 24px rgba(92, 137, 255, 0.4);
+}
+
+.value-purple {
+  background: linear-gradient(135deg, rgba(182, 138, 255, 0.3), rgba(182, 138, 255, 0.1));
+  color: var(--purple);
+  border: 2px solid var(--purple);
+  box-shadow: 0 8px 24px rgba(182, 138, 255, 0.4);
+}
+
+.value-pink {
+  background: linear-gradient(135deg, rgba(255, 106, 153, 0.3), rgba(255, 106, 153, 0.1));
+  color: var(--pink);
+  border: 2px solid var(--pink);
+  box-shadow: 0 8px 24px rgba(255, 106, 153, 0.4);
+}
+
+.value-green {
+  background: linear-gradient(135deg, rgba(77, 219, 120, 0.3), rgba(77, 219, 120, 0.1));
+  color: var(--green);
+  border: 2px solid var(--green);
+  box-shadow: 0 8px 24px rgba(77, 219, 120, 0.4);
+}
+
+.value-orange {
+  background: linear-gradient(135deg, rgba(255, 158, 85, 0.3), rgba(255, 158, 85, 0.1));
+  color: var(--orange);
+  border: 2px solid var(--orange);
+  box-shadow: 0 8px 24px rgba(255, 158, 85, 0.4);
+}
+
+.value-chip:hover {
+  transform: scale(1.1) translateY(-5px);
+}
+
+@media (max-width: 768px) {
+  .value-chip {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+}

@@ -1,0 +1,307 @@
+Create a modern, premium-quality homepage website for our recruitment application using:
+
+React Native Web (Expo or RN Web)
+
+Glassmorphism UI
+
+Smooth animations & micro-interactions
+
+Swipe-based aesthetic
+
+No backend
+
+The website should look futuristic, polished, and use the following color scheme:
+
+🎨 Color Palette
+
+Use these colors exactly:
+
+Light Theme
+
+Primary Colors:
+
+Blue: #3A74FE
+
+Orange: #FF9A3D
+
+Pink: #FF4F81
+
+Purple: #A066FF
+
+Green: #34C759
+
+Neutrals:
+
+Background: #FFFFFF
+
+Surface: #F9FAFC
+
+Border: #DDE1E6
+
+Text Primary: #1F2937
+
+Text Secondary: #4B5563
+
+Dark Theme
+
+Primary Colors:
+
+Blue: #5C89FF
+
+Orange: #FF9E55
+
+Pink: #FF6A99
+
+Purple: #B68AFF
+
+Green: #4DDB78
+
+Neutrals:
+
+Background: #0D0F13
+
+Surface: #1A1D24
+
+Border: #2A2E38
+
+Text Primary: #F4F4F6
+
+Text Secondary: #B0B4C0
+
+🎯 Website Requirements
+✔ Overall Design Style
+
+Full-screen hero sections
+
+Glassmorphism cards (blurred, translucent surfaces)
+
+Rounded corners (16–28px)
+
+Shadow depth + soft glows using primary colors
+
+Smooth parallax effects
+
+Subtle swipe animation hints
+
+Dynamic gradient backgrounds from primary colors
+
+🏠 Sections to Include (Content Below)
+1️⃣ Hero Section
+
+A bold, animated hero section that explains our vision:
+
+Headline:
+"India’s Fastest, Most Transparent Recruitment Ecosystem"
+
+Subheadline:
+"A swipe-based job platform with AI + Human screening for candidates and employers."
+
+Include:
+
+CTA button: “Join Our WhatsApp Community”
+
+CTA secondary: “Explore Platform”
+
+Animated phone mockups showing the swipe UX
+
+Glassmorphism floating cards
+
+2️⃣ Problem Section
+
+Two-column layout with icons & glass cards.
+
+For Candidates
+
+No response after applying
+
+Boring applications
+
+Lack of guidance
+
+Confusing interviews
+
+Fake job posts
+
+Low-quality existing platforms
+
+No fun element
+
+For Employers
+
+Irrelevant CVs
+
+Unqualified applicants
+
+Slow screening
+
+Verification delays
+
+No-shows
+
+Manual processes
+
+3️⃣ Our Swipe-Based Solution
+
+Create a modern visual section showing swipe cards.
+
+For Candidates
+
+Swipe to apply or reject
+
+AI + Human hybrid screening
+
+Guaranteed updates
+
+SkillVerse gamified assessments
+
+Build Rank (A+ to D)
+
+RM guidance
+
+Verified profiles
+
+For Employers
+
+Swipe to shortlist
+
+View complete profiles post-shortlist
+
+Pre-vetted applicants
+
+Automated follow-ups
+
+Full interview management
+
+Superfast hiring
+
+Use animated card transitions & blur surfaces.
+
+4️⃣ Unique Selling Points
+
+Display as animated icons inside glass cards.
+
+Fun swipe-based job discovery
+
+Hybrid AI + Human screening
+
+Verified candidate ranks
+
+Transparency in hiring
+
+SkillVerse challenges
+
+RM support
+
+Interview management
+
+Replacement guarantee
+
+5️⃣ Revenue Model
+
+Use 4–6 pricing glass blocks.
+
+For Employers:
+
+Monthly / Quarterly / Annual Plans
+
+1-month free trial
+
+Premium features (priority, fast screening, same-day delivery, replacement guarantee)
+
+For Candidates:
+(Show “Coming Soon”)
+
+Resume build
+
+English training
+
+Skill courses
+
+Fast-track screening
+
+6️⃣ 1-Year Roadmap (Animated Timeline)
+
+Quarter 1 → Q2 → Q3 → Q4
+Each inside a translucent glass tile.
+
+7️⃣ Core Values
+
+Use floating glowing chips:
+
+Transparency
+
+Speed
+
+Fun UX
+
+Candidate-first
+
+Employer trust
+
+High-quality screening
+
+Innovation
+
+8️⃣ Team Section
+
+Glassmorphism team cards with hover animation.
+
+Founder & CEO — Shantanu
+
+CTO & Co-founders — Kenneth, Prasad
+
+Operations — Mansi
+
+RM — Varsha
+
+Screening — Shantanu, Mansi
+
+QA — YTH (Temp)
+
+HR Acquisition — Shantanu, Varsha
+
+Marketing (Temp) — Shantanu
+
+Support — Mansi
+
+Footer
+
+WhatsApp Community Link
+
+Social icons
+
+Copyright
+
+Glass footer with blurred background
+
+✨ Additional UI Instructions
+
+Use Lottie animations where possible
+
+Use React Native Reanimated for smooth transitions
+
+Add parallax background gradients
+
+Include hover effects for web
+
+Use scroll-triggered animations (fade-up, slide, scale)
+
+Add 3D swipe card animation in hero section
+
+Must be fully responsive for desktop + mobile
+
+🚀 Final Output Format
+
+Generate:
+
+Fully working React Native Web code (Expo or Next.js + RN Web)
+
+All UI components styled
+
+Colors applied exactly
+
+Glassmorphism implemented using blur + opacity
+
+Animations included
+
+Placeholder images provided
