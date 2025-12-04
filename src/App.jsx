@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
+import MobileDemoSection from './components/MobileDemoSection';
 import ProblemSection from './components/ProblemSection';
 import SolutionSection from './components/SolutionSection';
 import USPSection from './components/USPSection';
@@ -15,6 +16,7 @@ function App() {
     <div className="App">
       <Navbar />
       <HeroSection />
+      <MobileDemoSection />
       <ProblemSection />
       <SolutionSection />
       <USPSection />

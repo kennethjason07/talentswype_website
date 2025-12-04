@@ -56,78 +56,224 @@
 .swipe-cards-container {
   position: relative;
   height: 500px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  perspective: 1000px;
 }
 
 .swipe-card {
   position: absolute;
-  width: 350px;
-  padding: 2rem;
-  cursor: grab;
+  width: 380px;
+  padding: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  transform-origin: 50% 100%;
+  touch-action: none;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
 }
 
-.swipe-card:nth-child(1) {
-  transform: translateX(-40px) rotate(-8deg);
-  z-index: 1;
+.swipe-card:hover {
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
 }
 
-.swipe-card:nth-child(2) {
-  z-index: 3;
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .swipe-card {
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.95) 0%, rgba(26, 29, 36, 0.9) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
 }
 
-.swipe-card:nth-child(3) {
-  transform: translateX(40px) rotate(8deg);
-  z-index: 2;
+/* Swipe Indicators */
+.swipe-indicator {
+  position: absolute;
+  top: 4rem;
+  padding: 0.5rem 2rem;
+  border: 6px solid;
+  border-radius: 16px;
+  font-size: 3.5rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+  z-index: 100;
+  pointer-events: none;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.swipe-indicator.accept {
+  right: 2rem;
+  color: #22c55e;
+  border-color: #22c55e;
+  transform: rotate(15deg);
+}
+
+.swipe-indicator.reject {
+  left: 2rem;
+  color: #ef4444;
+  border-color: #ef4444;
+  transform: rotate(-15deg);
+}
+
+/* Swipe Instruction Text */
+.swipe-instruction-text {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.swipe-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.swipe-instruction-text p {
+  font-size: 0.875rem;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+/* Match Badge */
+.match-badge {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: linear-gradient(135deg, #4ade80, #22c55e);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
 }
 
 .card-header {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  padding: 2rem 2rem 1rem;
+  pointer-events: none;
 }
 
 .card-avatar {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgba(92, 137, 255, 0.5);
+  border: 3px solid rgba(92, 137, 255, 0.3);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .card-info h4 {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   margin-bottom: 0.25rem;
   color: var(--text-primary);
+  font-weight: 700;
 }
 
-.card-info p {
-  font-size: 0.9rem;
+.card-role {
+  font-size: 1rem;
+  color: var(--blue);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.card-company {
+  font-size: 0.875rem;
   color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+/* Card Details */
+.card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0 2rem 1rem;
+  pointer-events: none;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.detail-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--blue);
+  opacity: 0.7;
 }
 
 .card-tags {
   display: flex;
-  gap: 0.75rem;
+  gap: 0.5rem;
   flex-wrap: wrap;
-  margin-bottom: 1.5rem;
+  padding: 0 2rem 1.5rem;
+  pointer-events: none;
 }
 
 .tag {
   padding: 0.5rem 1rem;
-  background: rgba(92, 137, 255, 0.2);
-  border: 1px solid rgba(92, 137, 255, 0.3);
-  border-radius: 12px;
-  font-size: 0.875rem;
+  background: linear-gradient(135deg, rgba(92, 137, 255, 0.1), rgba(182, 138, 255, 0.1));
+  border: 1px solid rgba(92, 137, 255, 0.2);
+  border-radius: 16px;
+  font-size: 0.8125rem;
   color: var(--blue);
-  font-weight: 500;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.tag:nth-child(2) {
+  background: linear-gradient(135deg, rgba(182, 138, 255, 0.1), rgba(255, 106, 153, 0.1));
+  border-color: rgba(182, 138, 255, 0.2);
+  color: var(--purple);
+}
+
+.tag:nth-child(3) {
+  background: linear-gradient(135deg, rgba(255, 106, 153, 0.1), rgba(255, 158, 85, 0.1));
+  border-color: rgba(255, 106, 153, 0.2);
+  color: var(--pink);
+}
+
+.tag:nth-child(4) {
+  background: linear-gradient(135deg, rgba(52, 199, 89, 0.1), rgba(77, 219, 120, 0.1));
+  border-color: rgba(52, 199, 89, 0.2);
+  color: var(--green);
 }
 
 .card-actions {
   display: flex;
   justify-content: center;
   gap: 2rem;
+  padding: 0 2rem 2rem;
 }
 
 .action-btn {
@@ -140,23 +286,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  background: white;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
 
 .action-btn.reject {
-  background: rgba(255, 79, 129, 0.2);
   color: var(--pink);
-  border: 2px solid var(--pink);
+  border: 2px solid transparent;
+}
+.action-btn.reject:hover {
+  background: rgba(255, 79, 129, 0.1);
+  border-color: var(--pink);
+  box-shadow: 0 8px 20px rgba(255, 79, 129, 0.3);
 }
 
 .action-btn.accept {
-  background: rgba(52, 199, 89, 0.2);
   color: var(--green);
-  border: 2px solid var(--green);
+  border: 2px solid transparent;
+}
+.action-btn.accept:hover {
+  background: rgba(52, 199, 89, 0.1);
+  border-color: var(--green);
+  box-shadow: 0 8px 20px rgba(52, 199, 89, 0.3);
 }
 
-.action-btn:hover {
-  transform: scale(1.1);
+.empty-state {
+  text-align: center;
+  color: var(--text-secondary);
+  z-index: 0;
+}
+
+.empty-state p {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
 }
 
 /* Floating Cards */
@@ -165,16 +328,20 @@
   padding: 1.5rem 2rem;
   text-align: center;
   min-width: 150px;
+  pointer-events: none;
 }
 
 .floating-card:first-of-type {
-  top: 10%;
-  right: -10%;
+  top: auto;
+  bottom: -5%;
+  left: 5%;
+  right: auto;
 }
 
 .floating-card-2 {
   bottom: -5%;
-  right: 20%;
+  right: 5%;
+  left: auto;
 }
 
 .stat-number {
@@ -204,7 +371,7 @@
   }
 
   .swipe-card {
-    width: 300px;
+    width: 340px;
   }
 
   .floating-card {
@@ -231,6 +398,15 @@
   }
 
   .swipe-card {
-    width: 280px;
+    width: 320px;
+  }
+
+  .card-avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .card-info h4 {
+    font-size: 1.25rem;
   }
 }
