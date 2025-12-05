@@ -12,6 +12,7 @@ import BlogSection from './components/BlogSection';
 import Footer from './components/Footer';
 import BlogPage from './pages/BlogPage';
 import BlogPost from './pages/BlogPost';
+import WhatsAppButton from './components/WhatsAppButton';
 import './App.css';
 
 const LandingPage = () => (
@@ -38,6 +39,7 @@ function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogPost />} />
       </Routes>
+      <WhatsAppButton />
     </div>
   );
 }
