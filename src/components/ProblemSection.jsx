@@ -5,20 +5,15 @@ import './ProblemSection.css';
 const ProblemSection = () => {
   const candidateProblems = [
     { icon: <FiX />, text: 'No response after applying' },
-    { icon: <FiMeh />, text: 'Boring applications' },
-    { icon: <FiAlertCircle />, text: 'Lack of guidance' },
-    { icon: <FiClock />, text: 'Confusing interviews' },
     { icon: <FiX />, text: 'Fake job posts' },
     { icon: <FiMeh />, text: 'Low-quality platforms' },
-    { icon: <FiAlertCircle />, text: 'No fun element' },
+    { icon: <FiAlertCircle />, text: 'Lack of guidance' },
   ];
 
   const employerProblems = [
     { icon: <FiX />, text: 'Irrelevant CVs' },
-    { icon: <FiAlertCircle />, text: 'Unqualified applicants' },
-    { icon: <FiClock />, text: 'Slow screening' },
-    { icon: <FiMeh />, text: 'Verification delays' },
     { icon: <FiX />, text: 'No-shows' },
+    { icon: <FiClock />, text: 'Slow screening' },
     { icon: <FiAlertCircle />, text: 'Manual processes' },
   ];
 

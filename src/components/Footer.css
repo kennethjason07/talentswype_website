@@ -116,8 +116,62 @@
   }
 
   .social-links a {
-    width: 45px;
-    height: 45px;
+    width: 48px;
+    height: 48px;
+    font-size: 1.3rem;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 414px) {
+  .footer {
+    margin-top: 4rem;
+    padding: 3rem 0 1.5rem;
+  }
+
+  .footer-brand h3 {
+    font-size: 1.75rem;
+  }
+
+  .footer-brand p {
+    font-size: 1rem;
+  }
+
+  .footer-cta h4 {
     font-size: 1.25rem;
+  }
+
+  .footer-cta .btn {
+    font-size: 1rem;
+    padding: 0.875rem 1.75rem;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 375px) {
+  .footer-brand h3 {
+    font-size: 1.5rem;
+  }
+
+  .footer-brand p {
+    font-size: 0.95rem;
+  }
+
+  .footer-cta h4 {
+    font-size: 1.15rem;
+  }
+
+  .social-links {
+    gap: 1.25rem;
+  }
+
+  .social-links a {
+    width: 44px;
+    height: 44px;
+    font-size: 1.2rem;
+  }
+
+  .footer-bottom p {
+    font-size: 0.9rem;
   }
 }

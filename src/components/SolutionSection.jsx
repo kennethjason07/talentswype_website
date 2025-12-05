@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FiHeart, FiX, FiCheckCircle, FiZap, FiAward, FiUsers } from 'react-icons/fi';
+import { FiHeart, FiCheckCircle, FiZap } from 'react-icons/fi';
 import './SolutionSection.css';
 
 const SolutionSection = () => {
@@ -7,19 +7,14 @@ const SolutionSection = () => {
     { icon: <FiHeart />, title: 'Swipe to apply or reject', color: 'pink' },
     { icon: <FiZap />, title: 'AI + Human hybrid screening', color: 'blue' },
     { icon: <FiCheckCircle />, title: 'Guaranteed updates', color: 'green' },
-    { icon: <FiAward />, title: 'SkillVerse gamified assessments', color: 'purple' },
-    { icon: <FiAward />, title: 'Build Rank (A+ to D)', color: 'orange' },
-    { icon: <FiUsers />, title: 'RM guidance', color: 'blue' },
-    { icon: <FiCheckCircle />, title: 'Verified profiles', color: 'green' },
+    { icon: <FiCheckCircle />, title: 'Verified profiles', color: 'purple' },
   ];
 
   const employerFeatures = [
     { icon: <FiHeart />, title: 'Swipe to shortlist', color: 'pink' },
-    { icon: <FiUsers />, title: 'View complete profiles post-shortlist', color: 'blue' },
     { icon: <FiCheckCircle />, title: 'Pre-vetted applicants', color: 'green' },
     { icon: <FiZap />, title: 'Automated follow-ups', color: 'purple' },
-    { icon: <FiAward />, title: 'Full interview management', color: 'orange' },
-    { icon: <FiZap />, title: 'Superfast hiring', color: 'pink' },
+    { icon: <FiZap />, title: 'Superfast hiring', color: 'orange' },
   ];
 
   return (

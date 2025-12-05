@@ -235,4 +235,65 @@ section {
   .container {
     padding: 0 1.5rem;
   }
+
+  .btn {
+    padding: 0.875rem 1.75rem;
+    font-size: 1.0625rem;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 414px) {
+  section {
+    padding: 3.5rem 0;
+  }
+
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  .btn {
+    padding: 0.8125rem 1.625rem;
+    font-size: 1rem;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 375px) {
+  section {
+    padding: 3rem 0;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+    min-height: 44px; /* Ensure touch-friendly size */
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 4.5rem);
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 4vw, 3.5rem);
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 3vw, 2.5rem);
+  }
+}
+
+/* Prevent horizontal scroll on all screen sizes */
+@media (max-width: 1024px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  * {
+    max-width: 100%;
+  }
 }

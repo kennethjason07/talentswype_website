@@ -177,16 +177,16 @@ const MobileDemoSection = () => {
 
             <div className="demo-controls">
               <motion.button 
-                className="demo-btn reject"
+                className={`demo-btn accept ${swipeDirection === 'accept' ? 'active-glow' : ''}`}
+                animate={swipeDirection === 'accept' ? { scale: [1, 1.2, 1] } : {}}
+              >
+                ✓
+              </motion.button>
+              <motion.button 
+                className={`demo-btn reject ${swipeDirection === 'reject' ? 'active-glow' : ''}`}
                 animate={swipeDirection === 'reject' ? { scale: [1, 1.2, 1] } : {}}
               >
                 ✕
-              </motion.button>
-              <motion.button 
-                className="demo-btn accept"
-                animate={swipeDirection === 'accept' ? { scale: [1, 1.2, 1] } : {}}
-              >
-                ♥
               </motion.button>
             </div>
           </div>

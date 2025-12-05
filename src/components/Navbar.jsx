@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -22,14 +24,14 @@ const Navbar = () => {
     >
       <div className="container navbar-content">
         <motion.div className="logo" whileHover={{ scale: 1.05 }}>
-          <span className="logo-text">TalentSwype</span>
+          <img src={logo} alt="TalentSwype" className="logo-image" />
         </motion.div>
 
         <div className="nav-links">
           <a href="#problem">Problems</a>
           <a href="#solution">Solution</a>
           <a href="#pricing">Pricing</a>
-          <a href="#team">Team</a>
+          <Link to="/blog">Blog</Link>
           <motion.a
             href="https://chat.whatsapp.com/your-link"
             className="btn btn-primary btn-small"

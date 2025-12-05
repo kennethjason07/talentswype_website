@@ -77,12 +77,43 @@
   }
 
   .problem-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 1.25rem;
+    width: 44px;
+    height: 44px;
+    font-size: 1.3rem;
   }
 
   .problem-card p {
     font-size: 1rem;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 414px) {
+  .section-header {
+    margin-bottom: 3rem;
+  }
+
+  .section-header p {
+    font-size: 1.1rem;
+  }
+
+  .problem-card {
+    padding: 1.125rem;
+    gap: 1.25rem;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 375px) {
+  .section-header p {
+    font-size: 1rem;
+  }
+
+  .problem-card {
+    padding: 1rem;
+  }
+
+  .problem-card p {
+    font-size: 0.95rem;
   }
 }

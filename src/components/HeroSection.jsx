@@ -91,7 +91,7 @@ const SwipeCard = ({ data, active, onSwipe, index }) => {
       dragConstraints={{ left: 0, right: 0 }}
       dragElastic={0.7}
       onDragEnd={handleDragEnd}
-      initial={{ scale: 0.9, opacity: 0 }}
+      initial={false}
       animate={{ 
         scale: active ? 1 : 0.95,
         opacity: 1,
@@ -145,6 +145,17 @@ const SwipeCard = ({ data, active, onSwipe, index }) => {
 
       <div className="card-actions">
         <motion.button 
+          className="action-btn accept"
+          onClick={(e) => {
+            e.stopPropagation();
+            triggerSwipe('left');
+          }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          ✓
+        </motion.button>
+        <motion.button 
           className="action-btn reject"
           onClick={(e) => {
             e.stopPropagation();
@@ -155,17 +166,6 @@ const SwipeCard = ({ data, active, onSwipe, index }) => {
         >
           ✕
         </motion.button>
-        <motion.button 
-          className="action-btn accept"
-          onClick={(e) => {
-            e.stopPropagation();
-            triggerSwipe('left');
-          }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          ♥
-        </motion.button>
       </div>
     </motion.div>
   );
@@ -174,6 +174,7 @@ const SwipeCard = ({ data, active, onSwipe, index }) => {
 const HeroSection = () => {
   const controls = useAnimation();
   const [cards, setCards] = useState(CANDIDATES);
+  const [resetKey, setResetKey] = useState(0);
 
   useEffect(() => {
     controls.start({
@@ -188,8 +189,10 @@ const HeroSection = () => {
       const newCards = [...prev];
       newCards.pop();
       if (newCards.length === 0) {
-        setTimeout(() => setCards(CANDIDATES), 500);
-        return [];
+        // Immediately reset cards for seamless infinite loop
+        setCards(CANDIDATES);
+        setResetKey(k => k + 1); // Force remount
+        return CANDIDATES;
       }
       return newCards;
     });
@@ -247,18 +250,26 @@ const HeroSection = () => {
         </motion.div>
 
         <div className="hero-visual">
-          <motion.div 
-            className="swipe-instruction-text"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.6 }}
-          >
-            <span className="swipe-icon">👇</span>
-            <p>Swipe or use buttons to decide</p>
-          </motion.div>
-
           <div className="swipe-cards-container">
-            <AnimatePresence>
+            <motion.div 
+              className="thought-bubble"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.6 }}
+            >
+              <div className="bubble-content">Try swiping! 👆</div>
+              <div className="bubble-tail"></div>
+            </motion.div>
+
+            <div className="swipe-side-indicator left">
+              <div className="indicator-icon">←</div>
+              <div className="indicator-text">
+                <h3>Swipe Left</h3>
+                <p>to Accept</p>
+              </div>
+            </div>
+
+            <AnimatePresence key={resetKey}>
               {cards.map((card, index) => (
                 <SwipeCard
                   key={card.id}
@@ -269,13 +280,14 @@ const HeroSection = () => {
                 />
               ))}
             </AnimatePresence>
-            
-            {cards.length === 0 && (
-              <div className="empty-state">
-                <p>No more candidates!</p>
-                <button onClick={() => setCards(CANDIDATES)} className="btn btn-sm btn-primary">Reset</button>
+
+            <div className="swipe-side-indicator right">
+              <div className="indicator-icon">→</div>
+              <div className="indicator-text">
+                <h3>Swipe Right</h3>
+                <p>to Reject</p>
               </div>
-            )}
+            </div>
           </div>
 
           <motion.div 

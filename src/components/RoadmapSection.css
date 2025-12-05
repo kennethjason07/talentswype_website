@@ -99,3 +99,38 @@
     font-size: 1rem;
   }
 }
+
+/* Extra small phones */
+@media (max-width: 414px) {
+  .roadmap-timeline {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .roadmap-card {
+    padding: 1.5rem;
+  }
+
+  .quarter-badge {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .roadmap-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 375px) {
+  .roadmap-card {
+    padding: 1.25rem;
+  }
+
+  .roadmap-card li {
+    font-size: 0.95rem;
+    padding-left: 1.25rem;
+  }
+}
