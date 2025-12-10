@@ -3,44 +3,44 @@ import { useEffect, useState } from 'react';
 import { FiArrowRight, FiMapPin, FiBriefcase, FiDollarSign } from 'react-icons/fi';
 import { MdTouchApp } from 'react-icons/md';
 import { FaRegHandPointer } from 'react-icons/fa6';
-import sarahImage from '../assets/candidate-sarah.png';
-import alexImage from '../assets/candidate-alex.png';
+import rahulImage from '../assets/candidate-rahul.png';
+import arjunImage from '../assets/candidate-arjun.png';
 import priyaImage from '../assets/candidate-priya.png';
 import './HeroSection.css';
 
 const CANDIDATES = [
   {
     id: 1,
-    name: "Sarah Chen",
+    name: "Rahul Verma",
     role: "Senior React Developer",
-    company: "TechFlow AI",
-    location: "San Francisco, CA",
+    company: "TechMahindra",
+    location: "Bangalore, India",
     experience: "5 years",
-    salary: "$120k - $150k",
+    salary: "₹10L - ₹12L",
     match: 95,
     skills: ["React", "TypeScript", "Node.js", "AWS"],
-    image: sarahImage
+    image: rahulImage
   },
   {
     id: 2,
-    name: "Alex Rivera",
+    name: "Arjun Patel",
     role: "Full Stack Engineer",
-    company: "CloudScale",
-    location: "Austin, TX",
+    company: "Infosys",
+    location: "Pune, India",
     experience: "7 years",
-    salary: "$130k - $160k",
+    salary: "₹12L - ₹15L",
     match: 88,
     skills: ["Python", "Django", "PostgreSQL", "Docker"],
-    image: alexImage
+    image: arjunImage
   },
   {
     id: 3,
     name: "Priya Sharma",
     role: "UI/UX Designer",
-    company: "Creative Studio",
-    location: "Remote",
+    company: "Wipro Digital",
+    location: "Hyderabad, India",
     experience: "4 years",
-    salary: "$90k - $120k",
+    salary: "₹8L - ₹10L",
     match: 92,
     skills: ["Figma", "Prototyping", "User Research", "CSS"],
     image: priyaImage
@@ -48,12 +48,28 @@ const CANDIDATES = [
 ];
 
 const SwipeHandHelper = ({ showLeft, showRight }) => {
+  const [currentAnimation, setCurrentAnimation] = useState('left');
+
+  useEffect(() => {
+    // Only alternate if both animations are still enabled
+    if (!showLeft || !showRight) return;
+
+    const interval = setInterval(() => {
+      setCurrentAnimation(prev => prev === 'left' ? 'right' : 'left');
+    }, 4000); // Switch every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [showLeft, showRight]);
+
+  // Determine which animation to show
+  const shouldShowLeft = showLeft && (!showRight || currentAnimation === 'left');
+  const shouldShowRight = showRight && (!showLeft || currentAnimation === 'right');
 
   return (
     <div className="swipe-hand-container">
       {/* Left Swipe Animation */}
       <AnimatePresence>
-        {showLeft && (
+        {shouldShowLeft && (
           <motion.div
             key="left-hand"
             className="hand-wrapper left-swipe"
@@ -66,7 +82,7 @@ const SwipeHandHelper = ({ showLeft, showRight }) => {
             }}
             exit={{ opacity: 0, transition: { duration: 0.3 } }}
             transition={{
-              duration: 2,
+              duration: 4,
               times: [0, 0.2, 0.8, 1],
               repeat: Infinity,
               repeatDelay: 0
@@ -99,7 +115,7 @@ const SwipeHandHelper = ({ showLeft, showRight }) => {
 
       {/* Right Swipe Animation */}
       <AnimatePresence>
-        {showRight && (
+        {shouldShowRight && (
           <motion.div
             key="right-hand"
             className="hand-wrapper right-swipe"
@@ -112,7 +128,7 @@ const SwipeHandHelper = ({ showLeft, showRight }) => {
             }}
             exit={{ opacity: 0, transition: { duration: 0.3 } }}
             transition={{
-              duration: 2,
+              duration: 4,
               times: [0, 0.2, 0.8, 1],
               repeat: Infinity,
               repeatDelay: 0
@@ -336,7 +352,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            Now our team will handle all the backend tasks for you, Watch a video below to know more
+            Now our team will handle all the backend tasks for you
           </motion.p>
 
           <motion.div 
@@ -349,6 +365,7 @@ const HeroSection = () => {
               className="btn btn-primary"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Sign up <FiArrowRight />
             </motion.button>

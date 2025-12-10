@@ -73,8 +73,9 @@ const RevenueSection = () => {
                     className="btn btn-primary"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    onClick={() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' })}
                   >
-                    Get Started
+                    Contact Us
                   </motion.button>
                 </motion.div>
               ))}

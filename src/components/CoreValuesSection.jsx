@@ -4,8 +4,8 @@ import './CoreValuesSection.css';
 const CoreValuesSection = () => {
   const values = [
     { text: 'Trust', color: 'orange' },
-    { text: 'Speed', color: 'purple' },
     { text: 'Transparency', color: 'blue' },
+    { text: 'Speed', color: 'purple' },
   ];
 
   return (

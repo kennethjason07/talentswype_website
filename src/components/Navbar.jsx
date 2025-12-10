@@ -32,14 +32,14 @@ const Navbar = () => {
 
           <a href="#pricing">Pricing</a>
           <Link to="/blog">Blog</Link>
-          <motion.a
-            href="https://chat.whatsapp.com/your-link"
+          <motion.button
+            onClick={() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' })}
             className="btn btn-primary btn-small"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             Sign up
-          </motion.a>
+          </motion.button>
         </div>
       </div>
     </motion.nav>

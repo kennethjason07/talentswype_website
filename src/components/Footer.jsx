@@ -76,7 +76,7 @@ const Footer = () => {
             <p className="footer-slogan">Now our team will handle all the backend tasks for you</p>
           </div>
 
-          <div className="footer-cta contact-form-container">
+          <div className="footer-cta contact-form-container" id="contact-section">
             <h4>Write to us</h4>
             <form className="contact-form" onSubmit={handleSubmit}>
               <input 
@@ -148,18 +148,15 @@ const Footer = () => {
             <motion.a href="#" whileHover={{ scale: 1.2, y: -5 }}>
               <FaTwitter />
             </motion.a>
-            <motion.a href="#" whileHover={{ scale: 1.2, y: -5 }}>
+            <motion.a href="https://www.instagram.com/talent_swype/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.2, y: -5 }}>
               <FaInstagram />
             </motion.a>
-            <motion.a href="#" whileHover={{ scale: 1.2, y: -5 }}>
+            <motion.a href="mailto:admin@talentswype.com" whileHover={{ scale: 1.2, y: -5 }}>
               <FiMail />
             </motion.a>
           </div>
         </motion.div>
         
-        <div className="footer-bottom">
-          <p>&copy; 2026 TalentSwype. All rights reserved.</p>
-        </div>
       </div>
     </footer>
   );
