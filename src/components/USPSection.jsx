@@ -1,17 +1,30 @@
 import { motion } from 'framer-motion';
-import { FiZap, FiShield, FiTrendingUp, FiHeart, FiAward, FiUsers, FiTarget, FiStar } from 'react-icons/fi';
+
 import './USPSection.css';
 
 const USPSection = () => {
-  const usps = [
-    { icon: <FiHeart />, title: 'Fun swipe-based job discovery', color: 'pink' },
-    { icon: <FiZap />, title: 'Hybrid AI + Human screening', color: 'blue' },
-    { icon: <FiAward />, title: 'Verified candidate ranks', color: 'purple' },
-    { icon: <FiShield />, title: 'Transparency in hiring', color: 'green' },
-    { icon: <FiTarget />, title: 'SkillVerse challenges', color: 'orange' },
-    { icon: <FiUsers />, title: 'RM support', color: 'blue' },
-    { icon: <FiTrendingUp />, title: 'Interview management', color: 'purple' },
-    { icon: <FiStar />, title: 'Replacement guarantee', color: 'pink' },
+  const testimonials = [
+    {
+      id: 1,
+      name: "Anjali Mehta",
+      role: "HR Director @ TechFlow",
+      quote: "TalentSwype reduced our hiring time by 70%. The candidate quality is unmatched.",
+      tags: ["Case Study", "Hiring Success"]
+    },
+    {
+      id: 2,
+      name: "Rajesh Kumar",
+      role: "Founder @ StartupX",
+      quote: "Finally, a platform that understands the speed we need. One swipe and we found our lead dev.",
+      tags: ["Founder Review", "Speed"]
+    },
+    {
+      id: 3,
+      name: "Priya Sharma",
+      role: "Talent Acquisition Lead",
+      quote: "The pre-screening is accurate. We stopped wasting time on initial interview rounds.",
+      tags: ["HR Interview", "Quality"]
+    }
   ];
 
   return (
@@ -24,23 +37,32 @@ const USPSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2>Why Choose TalentSwype?</h2>
-          <p>Unique features that set us apart</p>
+          <h2>Success Stories</h2>
+          <p>What HR leaders and Founders say about us</p>
         </motion.div>
 
-        <div className="usp-grid">
-          {usps.map((usp, index) => (
+        <div className="usp-grid testimonials-grid">
+          {testimonials.map((item, index) => (
             <motion.div
-              key={index}
-              className={`usp-card glass-card usp-${usp.color}`}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              key={item.id}
+              className="testimonial-card glass-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.4 }}
-              whileHover={{ scale: 1.05, y: -10 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              whileHover={{ y: -5 }}
             >
-              <div className="usp-icon">{usp.icon}</div>
-              <h4>{usp.title}</h4>
+              <div className="testimonial-tags">
+                {item.tags.map(tag => <span key={tag} className="t-tag">{tag}</span>)}
+              </div>
+              <p className="testimonial-quote">"{item.quote}"</p>
+              <div className="testimonial-author">
+                <div className="author-avatar-placeholder">{item.name[0]}</div>
+                <div className="author-info">
+                  <h5>{item.name}</h5>
+                  <span>{item.role}</span>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>

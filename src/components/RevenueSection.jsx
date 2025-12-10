@@ -25,12 +25,7 @@ const RevenueSection = () => {
     },
   ];
 
-  const candidateFeatures = [
-    'Resume build',
-    'English training',
-    'Skill courses',
-    'Fast-track screening',
-  ];
+
 
   return (
     <section id="pricing" className="revenue-section">
@@ -48,7 +43,7 @@ const RevenueSection = () => {
 
         <div className="pricing-container">
           <div className="employer-pricing">
-            <h3 className="pricing-title">For Employers</h3>
+
             <div className="pricing-grid">
               {employerPlans.map((plan, index) => (
                 <motion.div
@@ -62,7 +57,7 @@ const RevenueSection = () => {
                 >
                   {plan.popular && <div className="popular-badge">Most Popular</div>}
                   <h4>{plan.name}</h4>
-                  <div className="price">
+                  <div className="price blurred">
                     <span className="amount">{plan.price}</span>
                     <span className="period">{plan.period}</span>
                   </div>
@@ -86,27 +81,7 @@ const RevenueSection = () => {
             </div>
           </div>
 
-          <motion.div
-            className="candidate-pricing"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="coming-soon-card glass-card">
-              <div className="coming-soon-badge">Coming Soon</div>
-              <h3>For Candidates</h3>
-              <p>Premium features to boost your career</p>
-              <ul className="features">
-                {candidateFeatures.map((feature, i) => (
-                  <li key={i}>
-                    <FiCheck className="check-icon" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
+
         </div>
       </div>
     </section>

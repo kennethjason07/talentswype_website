@@ -3,13 +3,9 @@ import './CoreValuesSection.css';
 
 const CoreValuesSection = () => {
   const values = [
-    { text: 'Transparency', color: 'blue' },
+    { text: 'Trust', color: 'orange' },
     { text: 'Speed', color: 'purple' },
-    { text: 'Fun UX', color: 'pink' },
-    { text: 'Candidate-first', color: 'green' },
-    { text: 'Employer trust', color: 'orange' },
-    { text: 'High-quality screening', color: 'blue' },
-    { text: 'Innovation', color: 'purple' },
+    { text: 'Transparency', color: 'blue' },
   ];
 
   return (
@@ -34,12 +30,13 @@ const CoreValuesSection = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.4 }}
               whileHover={{ scale: 1.1, y: -5 }}
               animate={{
                 y: [0, -10, 0],
               }}
               transition={{
+                delay: index * 0.1, 
+                duration: 0.4,
                 y: {
                   duration: 3 + index * 0.5,
                   repeat: Infinity,

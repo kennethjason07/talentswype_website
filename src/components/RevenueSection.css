@@ -1,5 +1,8 @@
 .revenue-section {
   background: radial-gradient(circle at 50% 50%, rgba(92, 137, 255, 0.1) 0%, transparent 70%);
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .pricing-container {
@@ -27,6 +30,9 @@
   padding: 2.5rem;
   position: relative;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .pricing-card.popular {
@@ -78,6 +84,7 @@
   padding: 0;
   margin: 2rem 0;
   text-align: left;
+  flex-grow: 1;
 }
 
 .features li {
@@ -100,35 +107,17 @@
   margin-top: 1rem;
 }
 
-.coming-soon-card {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 3rem;
-  text-align: center;
+/* Blurred Price Styles */
+.price.blurred {
+  filter: blur(8px);
+  user-select: none;
+  opacity: 0.5;
   position: relative;
 }
 
-.coming-soon-badge {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--orange), var(--pink));
-  color: white;
-  padding: 0.75rem 2rem;
-  border-radius: 24px;
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 4px 16px rgba(255, 158, 85, 0.5);
-}
-
-.coming-soon-card h3 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.coming-soon-card p {
-  font-size: 1.25rem;
-  color: var(--text-secondary);
-  margin-bottom: 2rem;
+.pricing-card:hover .price.blurred {
+  filter: blur(4px);
+  opacity: 0.6;
 }
 
 @media (max-width: 768px) {
@@ -142,10 +131,6 @@
 
   .amount {
     font-size: 2.5rem;
-  }
-
-  .coming-soon-card {
-    padding: 2rem;
   }
 }
 
@@ -170,14 +155,6 @@
   .features li {
     font-size: 1rem;
     padding: 0.5rem 0;
-  }
-
-  .coming-soon-card h3 {
-    font-size: 1.75rem;
-  }
-
-  .coming-soon-card p {
-    font-size: 1.125rem;
   }
 }
 
@@ -206,18 +183,5 @@
 
   .check-icon {
     font-size: 1.1rem;
-  }
-
-  .coming-soon-badge {
-    padding: 0.5rem 1.5rem;
-    font-size: 0.875rem;
-  }
-
-  .coming-soon-card h3 {
-    font-size: 1.5rem;
-  }
-
-  .coming-soon-card p {
-    font-size: 1rem;
   }
 }

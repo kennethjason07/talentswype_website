@@ -33,7 +33,7 @@
 }
 
 .logo-image {
-  height: 60px;
+  height: 120px;
   width: auto;
   display: block;
   object-fit: contain;
@@ -41,7 +41,7 @@
 }
 
 .navbar.scrolled .logo-image {
-  height: 50px;
+  height: 95px;
 }
 
 .nav-links {

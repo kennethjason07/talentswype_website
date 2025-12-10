@@ -1,9 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
-import MobileDemoSection from './components/MobileDemoSection';
 import ProblemSection from './components/ProblemSection';
-import SolutionSection from './components/SolutionSection';
+import ComparisonSection from './components/ComparisonSection';
 import USPSection from './components/USPSection';
 import RevenueSection from './components/RevenueSection';
 import RoadmapSection from './components/RoadmapSection';
@@ -19,9 +18,8 @@ const LandingPage = () => (
   <>
     <Navbar />
     <HeroSection />
-    <MobileDemoSection />
     <ProblemSection />
-    <SolutionSection />
+    <ComparisonSection />
     <USPSection />
     <RevenueSection />
     <RoadmapSection />

@@ -1,9 +1,66 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiMail, FiMessageCircle } from 'react-icons/fi';
 import { FaWhatsapp, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
+import logo from '../assets/logo.png';
 import './Footer.css';
 
+import { supabase } from '../lib/supabase';
+
 const Footer = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    message: '',
+    consent: false
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.consent) {
+      alert('Please agree to the privacy policy to continue.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      if (!supabase) {
+        throw new Error('Supabase client is not initialized. Check your environment variables.');
+      }
+
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert([{
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          message: formData.message,
+          consent_given: formData.consent,
+          status: 'new'
+        }]);
+
+      if (error) throw error;
+
+      alert('Thank you for contacting us! We will get back to you shortly.');
+      setFormData({ name: '', phone: '', email: '', message: '', consent: false });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Failed to submit form. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <footer className="footer glass">
       <div className="container footer-content">
@@ -15,20 +72,64 @@ const Footer = () => {
           transition={{ duration: 0.6 }}
         >
           <div className="footer-brand">
-            <h3>TalentSwype</h3>
-            <p>India's fastest, most transparent recruitment ecosystem</p>
+            <img src={logo} alt="TalentSwype" className="footer-logo" />
+            <p className="footer-slogan">Now our team will handle all the backend tasks for you</p>
           </div>
 
-          <div className="footer-cta">
-            <h4>Join Our Community</h4>
-            <motion.a
-              href="https://chat.whatsapp.com/your-link"
-              className="btn btn-primary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FaWhatsapp /> WhatsApp Community
-            </motion.a>
+          <div className="footer-cta contact-form-container">
+            <h4>Write to us</h4>
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <input 
+                type="text" 
+                name="name" 
+                placeholder="Name" 
+                value={formData.name} 
+                onChange={handleChange} 
+                required 
+              />
+              <input 
+                type="tel" 
+                name="phone" 
+                placeholder="Phone Number" 
+                value={formData.phone} 
+                onChange={handleChange} 
+                required 
+              />
+              <input 
+                type="email" 
+                name="email" 
+                placeholder="Email Address" 
+                value={formData.email} 
+                onChange={handleChange} 
+                required 
+              />
+              <textarea 
+                name="message" 
+                placeholder="How can we help you?" 
+                value={formData.message} 
+                onChange={handleChange} 
+                rows="3"
+              ></textarea>
+              
+              <div className="form-consent">
+                <label>
+                  <input 
+                    type="checkbox" 
+                    name="consent" 
+                    checked={formData.consent} 
+                    onChange={handleChange} 
+                    required 
+                  />
+                  <span>
+                    I agree to receive promotions and marketing messages.
+                  </span>
+                </label>
+              </div>
+
+              <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+                {isSubmitting ? 'Sending...' : 'Contact Us'}
+              </button>
+            </form>
           </div>
         </motion.div>
 
@@ -55,10 +156,9 @@ const Footer = () => {
             </motion.a>
           </div>
         </motion.div>
-
+        
         <div className="footer-bottom">
           <p>&copy; 2026 TalentSwype. All rights reserved.</p>
-          <p>Built with ❤️ for the future of recruitment</p>
         </div>
       </div>
     </footer>

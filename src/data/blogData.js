@@ -23,7 +23,7 @@ export const blogPosts = [
       <p>At TalentSwype, we're at the forefront of this revolution. Our "AI + Human" hybrid screening ensures that every candidate is evaluated fairly and comprehensively, looking beyond the keywords to find the true talent within.</p>
     `,
     date: "May 15, 2025",
-    author: "Sarah Jenkins",
+    author: "Anjali Mehta",
     role: "Head of Product",
     category: "Technology",
     color: "blue",
@@ -53,7 +53,7 @@ export const blogPosts = [
       <p>For employers, this means a larger, more diverse pool of candidates. For Gen Z, it means a job hunt that finally feels like it belongs in the 21st century. It's not just about making hiring "fun"—it's about making it accessible, efficient, and aligned with modern user behavior.</p>
     `,
     date: "May 12, 2025",
-    author: "Mike Chen",
+    author: "Arjun Patel",
     role: "UX Researcher",
     category: "Trends",
     color: "purple",
@@ -89,7 +89,7 @@ export const blogPosts = [
       <p>Fixing these issues isn't just about "candidate experience"—it's about business competitiveness. A streamlined, respectful, and transparent hiring process is your best tool for attracting the high-performers who will drive your company forward.</p>
     `,
     date: "May 08, 2025",
-    author: "Alex Rivera",
+    author: "Vikram Singh",
     role: "Talent Acquisition Lead",
     category: "Tips",
     color: "pink",

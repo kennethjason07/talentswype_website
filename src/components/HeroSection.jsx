@@ -1,6 +1,8 @@
 import { motion, useAnimation, useMotionValue, useTransform, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { FiArrowRight, FiMapPin, FiBriefcase, FiDollarSign } from 'react-icons/fi';
+import { MdTouchApp } from 'react-icons/md';
+import { FaRegHandPointer } from 'react-icons/fa6';
 import sarahImage from '../assets/candidate-sarah.png';
 import alexImage from '../assets/candidate-alex.png';
 import priyaImage from '../assets/candidate-priya.png';
@@ -44,6 +46,105 @@ const CANDIDATES = [
     image: priyaImage
   }
 ];
+
+const SwipeHandHelper = ({ showLeft, showRight }) => {
+
+  return (
+    <div className="swipe-hand-container">
+      {/* Left Swipe Animation */}
+      <AnimatePresence>
+        {showLeft && (
+          <motion.div
+            key="left-hand"
+            className="hand-wrapper left-swipe"
+            initial={{ opacity: 0, x: 0, y: 0, rotate: 0 }}
+            animate={{
+              opacity: [0.4, 1, 1, 0.4],
+              x: [0, -40, -80, -80],
+              y: [0, -5, 0, 0],
+              rotate: [0, -10, -20, -20]
+            }}
+            exit={{ opacity: 0, transition: { duration: 0.3 } }}
+            transition={{
+              duration: 2,
+              times: [0, 0.2, 0.8, 1],
+              repeat: Infinity,
+              repeatDelay: 0
+            }}
+          >
+            <div className="hand-icon-wrapper">
+              <svg className="swipe-arrow-svg" viewBox="0 0 100 60" style={{ transform: 'scaleX(-1)' }}>
+                <path 
+                  d="M 10 35 Q 50 5 90 35" 
+                  fill="none" 
+                  stroke="white" 
+                  strokeWidth="5" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                />
+                <path 
+                  d="M 75 20 L 90 35 L 75 50" 
+                  fill="none" 
+                  stroke="white" 
+                  strokeWidth="5" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <FaRegHandPointer className="hand-icon" />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Right Swipe Animation */}
+      <AnimatePresence>
+        {showRight && (
+          <motion.div
+            key="right-hand"
+            className="hand-wrapper right-swipe"
+            initial={{ opacity: 0, x: 0, y: 0, rotate: 0 }}
+            animate={{
+              opacity: [0.4, 1, 1, 0.4],
+              x: [0, 40, 80, 80],
+              y: [0, -5, 0, 0],
+              rotate: [0, 10, 20, 20]
+            }}
+            exit={{ opacity: 0, transition: { duration: 0.3 } }}
+            transition={{
+              duration: 2,
+              times: [0, 0.2, 0.8, 1],
+              repeat: Infinity,
+              repeatDelay: 0
+            }}
+          >
+            <div className="hand-icon-wrapper">
+              <svg className="swipe-arrow-svg" viewBox="0 0 100 60" >
+                <path 
+                  d="M 10 35 Q 50 5 90 35" 
+                  fill="none" 
+                  stroke="white" 
+                  strokeWidth="5" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                />
+                 <path 
+                  d="M 75 20 L 90 35 L 75 50" 
+                  fill="none" 
+                  stroke="white" 
+                  strokeWidth="5" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <FaRegHandPointer className="hand-icon" />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 const SwipeCard = ({ data, active, onSwipe, index }) => {
   const x = useMotionValue(0);
@@ -175,6 +276,8 @@ const HeroSection = () => {
   const controls = useAnimation();
   const [cards, setCards] = useState(CANDIDATES);
   const [resetKey, setResetKey] = useState(0);
+  const [showLeft, setShowLeft] = useState(true);
+  const [showRight, setShowRight] = useState(true);
 
   useEffect(() => {
     controls.start({
@@ -184,7 +287,17 @@ const HeroSection = () => {
     });
   }, [controls]);
 
-  const handleSwipe = () => {
+  const handleSwipe = (direction) => {
+    console.log(`User swiped ${direction}`);
+    
+    // Disable suggestion based on direction
+    if (direction === 'left') {
+      setShowLeft(false);
+    }
+    if (direction === 'right') {
+      setShowRight(false);
+    }
+
     setCards(prev => {
       const newCards = [...prev];
       newCards.pop();
@@ -213,7 +326,8 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            India's Fastest, Most Transparent Recruitment Ecosystem
+            Hiring Simplified. <br />
+            Just <span className="swipe-word">Swipe <MdTouchApp className="swipe-icon-title" /></span> And We Do The Rest!
           </motion.h1>
           
           <motion.p
@@ -222,7 +336,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            A swipe-based job platform with AI + Human screening for candidates and employers.
+            Now our team will handle all the backend tasks for you, Watch a video below to know more
           </motion.p>
 
           <motion.div 
@@ -236,7 +350,7 @@ const HeroSection = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Join Our WhatsApp Community <FiArrowRight />
+              Sign up <FiArrowRight />
             </motion.button>
             
             <motion.button 
@@ -251,23 +365,7 @@ const HeroSection = () => {
 
         <div className="hero-visual">
           <div className="swipe-cards-container">
-            <motion.div 
-              className="thought-bubble"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2, duration: 0.6 }}
-            >
-              <div className="bubble-content">Try swiping! 👆</div>
-              <div className="bubble-tail"></div>
-            </motion.div>
-
-            <div className="swipe-side-indicator left">
-              <div className="indicator-icon">←</div>
-              <div className="indicator-text">
-                <h3>Swipe Left</h3>
-                <p>to Accept</p>
-              </div>
-            </div>
+            <SwipeHandHelper showLeft={showLeft} showRight={showRight} />
 
             <AnimatePresence key={resetKey}>
               {cards.map((card, index) => (
@@ -280,14 +378,6 @@ const HeroSection = () => {
                 />
               ))}
             </AnimatePresence>
-
-            <div className="swipe-side-indicator right">
-              <div className="indicator-icon">→</div>
-              <div className="indicator-text">
-                <h3>Swipe Right</h3>
-                <p>to Reject</p>
-              </div>
-            </div>
           </div>
 
           <motion.div 

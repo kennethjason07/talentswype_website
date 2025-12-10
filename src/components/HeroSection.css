@@ -53,7 +53,7 @@
   gap: 0.5rem;
 }
 
-/* Swipe Cards */
+/* Swipe CardsContainer */
 .swipe-cards-container {
   position: relative;
   height: 500px;
@@ -64,95 +64,59 @@
   perspective: 1000px;
 }
 
-/* Thought Bubble */
-/* Thought Bubble */
-.thought-bubble {
+/* Hand Animation Container */
+.swipe-hand-container {
   position: absolute;
-  bottom: -100px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 100;
-  animation: float 3s ease-in-out infinite;
+  inset: 0; /* Cover entire card area */
+  pointer-events: none;
+  z-index: 50;
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateX(-50%) translateY(0px);
-  }
-  50% {
-    transform: translateX(-50%) translateY(10px);
-  }
-}
-
-.bubble-content {
-  background: linear-gradient(135deg, rgba(92, 137, 255, 0.95), rgba(182, 138, 255, 0.95));
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 20px;
-  font-size: 1rem;
-  font-weight: 600;
-  white-space: nowrap;
-  box-shadow: 0 8px 24px rgba(92, 137, 255, 0.3);
-  position: relative;
-}
-
-.bubble-tail {
-  position: absolute;
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 10px solid rgba(92, 137, 255, 0.95);
-}
-
-/* Side Indicators */
-.swipe-side-indicator {
+.hand-wrapper {
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  text-align: center;
+  width: 150px;
+  height: 150px;
+}
+
+.hand-wrapper.left-swipe {
+  left: 5%; /* Position on Left side */
+  top: 55%;
+}
+
+.hand-wrapper.right-swipe {
+  right: 5%; /* Position on Right side */
+  top: 55%;
+}
+
+.hand-icon-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hand-icon {
+  font-size: 5rem;
+  color: white;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+  transform: rotate(-30deg); 
+  z-index: 2;
+}
+
+.swipe-arrow-svg {
+  position: absolute;
+  top: -60px; /* Position above hand */
+  width: 100px;
+  height: 60px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
   opacity: 0.9;
-  transition: opacity 0.3s ease;
-  z-index: 1;
 }
 
-.swipe-side-indicator:hover {
-  opacity: 1;
-}
-
-.swipe-side-indicator.left {
-  left: -50px;
-  color: var(--green);
-}
-
-.swipe-side-indicator.right {
-  right: -50px;
-  color: var(--pink);
-}
-
-.swipe-side-indicator .indicator-icon {
-  font-size: 4rem;
-  font-weight: bold;
-  line-height: 1;
-  opacity: 0.8;
-}
-
-.swipe-side-indicator .indicator-text h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 0.25rem;
-}
-
-.swipe-side-indicator .indicator-text p {
-  font-size: 1rem;
-  opacity: 0.9;
-}
+/* Removed old Thought Bubble and Side Indicator styles */
 
 .swipe-card {
   position: absolute;
@@ -451,6 +415,7 @@
   font-weight: 500;
 }
 
+/* Adjusted Responsive Styles */
 @media (max-width: 1024px) {
   .hero-content {
     grid-template-columns: 1fr;
@@ -468,19 +433,28 @@
   .floating-card {
     display: none;
   }
-
-  .swipe-side-indicator {
-    display: none;
-  }
-
-  .thought-bubble {
-    display: none;
-  }
 }
 
 @media (max-width: 768px) {
   .hero-section {
     padding-top: 6rem;
+  }
+  
+  .swipe-hand-container {
+      /* Reset specific sizing for mobile if needed, but inset: 0 should work fine. */
+      /* Maybe reduce padding or adjust wrapper positions */
+  }
+  
+  .hand-wrapper.left-swipe {
+      left: 0;
+  }
+  
+  .hand-wrapper.right-swipe {
+      right: 0;
+  }
+  
+  .hand-icon {
+      font-size: 3rem;
   }
 
   .hero-subtitle {
@@ -495,7 +469,7 @@
     width: 100%;
     justify-content: center;
   }
-
+  
   .swipe-card {
     width: 320px;
   }
@@ -546,22 +520,6 @@
     padding: 0 1.5rem 1.5rem;
     gap: 1.5rem;
   }
-
-  .swipe-side-indicator {
-    font-size: 0.9rem;
-  }
-
-  .swipe-side-indicator .indicator-icon {
-    font-size: 3rem;
-  }
-
-  .swipe-side-indicator .indicator-text h3 {
-    font-size: 1rem;
-  }
-
-  .swipe-side-indicator .indicator-text p {
-    font-size: 0.875rem;
-  }
 }
 
 /* Very small phones */
@@ -609,23 +567,6 @@
   .card-actions {
     gap: 1.25rem;
   }
-
-  .thought-bubble {
-    top: -70px;
-  }
-
-  .bubble-content {
-    padding: 0.6rem 1.25rem;
-    font-size: 0.9rem;
-  }
-
-  .swipe-side-indicator.left {
-    left: -40px;
-  }
-
-  .swipe-side-indicator.right {
-    right: -40px;
-  }
 }
 
 /* Landscape orientation on small devices */
@@ -640,9 +581,5 @@
 
   .swipe-card {
     width: 260px;
-  }
-
-  .thought-bubble {
-    display: none;
   }
 }

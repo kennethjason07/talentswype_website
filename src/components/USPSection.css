@@ -1,141 +1,97 @@
 .usp-section {
   background: linear-gradient(180deg, rgba(26, 29, 36, 0.5) 0%, transparent 100%);
+  padding: 5rem 0;
 }
 
-.usp-grid {
+.testimonials-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
 }
 
-.usp-card {
-  padding: 2.5rem 2rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.usp-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--blue), var(--purple));
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-
-.usp-card:hover::before {
-  transform: scaleX(1);
-}
-
-.usp-icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 1.5rem;
-  border-radius: 20px;
+.testimonial-card {
+  padding: 2.5rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
-  transition: all 0.3s ease;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  text-align: left;
 }
 
-.usp-pink .usp-icon {
-  background: linear-gradient(135deg, rgba(255, 106, 153, 0.3), rgba(255, 106, 153, 0.1));
-  color: var(--pink);
-  box-shadow: 0 8px 24px rgba(255, 106, 153, 0.3);
+.testimonial-card h4 {
+  margin-bottom: 0.5rem;
 }
 
-.usp-blue .usp-icon {
-  background: linear-gradient(135deg, rgba(92, 137, 255, 0.3), rgba(92, 137, 255, 0.1));
+.testimonial-tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.t-tag {
+  font-size: 0.75rem;
+  background: rgba(92, 137, 255, 0.1);
   color: var(--blue);
-  box-shadow: 0 8px 24px rgba(92, 137, 255, 0.3);
-}
-
-.usp-green .usp-icon {
-  background: linear-gradient(135deg, rgba(77, 219, 120, 0.3), rgba(77, 219, 120, 0.1));
-  color: var(--green);
-  box-shadow: 0 8px 24px rgba(77, 219, 120, 0.3);
-}
-
-.usp-purple .usp-icon {
-  background: linear-gradient(135deg, rgba(182, 138, 255, 0.3), rgba(182, 138, 255, 0.1));
-  color: var(--purple);
-  box-shadow: 0 8px 24px rgba(182, 138, 255, 0.3);
-}
-
-.usp-orange .usp-icon {
-  background: linear-gradient(135deg, rgba(255, 158, 85, 0.3), rgba(255, 158, 85, 0.1));
-  color: var(--orange);
-  box-shadow: 0 8px 24px rgba(255, 158, 85, 0.3);
-}
-
-.usp-card:hover .usp-icon {
-  transform: scale(1.1) rotate(5deg);
-}
-
-.usp-card h4 {
-  font-size: 1.25rem;
-  color: var(--text-primary);
-  margin: 0;
+  border: 1px solid rgba(92, 137, 255, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
   font-weight: 600;
 }
 
+.testimonial-quote {
+  font-size: 1.125rem;
+  font-style: italic;
+  color: var(--text-primary);
+  opacity: 0.9;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.author-avatar-placeholder {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.author-info h5 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.author-info span {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
 @media (max-width: 768px) {
-  .usp-grid {
+  .testimonials-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .usp-card {
-    padding: 2rem 1.5rem;
-  }
-
-  .usp-icon {
-    width: 70px;
-    height: 70px;
-    font-size: 2rem;
   }
 }
 
-/* Extra small phones */
 @media (max-width: 414px) {
-  .usp-card {
-    padding: 1.5rem 1.25rem;
+  .testimonial-card {
+    padding: 1.5rem;
   }
-
-  .usp-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-  }
-
-  .usp-card h4 {
-    font-size: 1.125rem;
-  }
-}
-
-/* Very small phones */
-@media (max-width: 375px) {
-  .usp-grid {
-    gap: 1rem;
-  }
-
-  .usp-card {
-    padding: 1.25rem 1rem;
-  }
-
-  .usp-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
-  }
-
-  .usp-card h4 {
+  
+  .testimonial-quote {
     font-size: 1rem;
   }
 }
