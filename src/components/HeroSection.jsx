@@ -353,13 +353,7 @@ const HeroSection = () => {
               Sign up <FiArrowRight />
             </motion.button>
             
-            <motion.button 
-              className="btn btn-secondary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Explore Platform
-            </motion.button>
+
           </motion.div>
         </motion.div>
 

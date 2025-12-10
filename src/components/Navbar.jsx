@@ -29,7 +29,7 @@ const Navbar = () => {
 
         <div className="nav-links">
           <a href="#problem">Problems</a>
-          <a href="#solution">Solution</a>
+
           <a href="#pricing">Pricing</a>
           <Link to="/blog">Blog</Link>
           <motion.a
