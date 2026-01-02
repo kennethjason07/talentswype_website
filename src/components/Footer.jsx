@@ -142,7 +142,12 @@ const Footer = () => {
         >
           <h4>Follow Us</h4>
           <div className="social-links">
-            <motion.a href="#" whileHover={{ scale: 1.2, y: -5 }}>
+            <motion.a 
+              href="https://www.linkedin.com/company/talent-swype/?originalSubdomain=in" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              whileHover={{ scale: 1.2, y: -5 }}
+            >
               <FaLinkedin />
             </motion.a>
             <motion.a href="#" whileHover={{ scale: 1.2, y: -5 }}>
