@@ -166,8 +166,8 @@ const SwipeCard = ({ data, active, onSwipe, index }) => {
   const x = useMotionValue(0);
   const rotate = useTransform(x, [-200, 200], [-15, 15]);
   const opacity = useTransform(x, [-200, -100, 0, 100, 200], [0, 1, 1, 1, 0]);
-  const acceptOpacity = useTransform(x, [-100, 0], [1, 0]);
-  const rejectOpacity = useTransform(x, [0, 100], [0, 1]);
+  const acceptOpacity = useTransform(x, [0, 100], [0, 1]);
+  const rejectOpacity = useTransform(x, [-100, 0], [1, 0]);
 
   const [exitX, setExitX] = useState(0);
 
@@ -222,10 +222,10 @@ const SwipeCard = ({ data, active, onSwipe, index }) => {
       whileTap={{ cursor: 'grabbing' }}
     >
       <motion.div style={{ opacity: acceptOpacity }} className="swipe-indicator accept">
-        LIKE
+        ACCEPT
       </motion.div>
       <motion.div style={{ opacity: rejectOpacity }} className="swipe-indicator reject">
-        NOPE
+        REJECT
       </motion.div>
 
       <div className="match-badge">{data.match}%</div>
@@ -265,7 +265,7 @@ const SwipeCard = ({ data, active, onSwipe, index }) => {
           className="action-btn accept"
           onClick={(e) => {
             e.stopPropagation();
-            triggerSwipe('left');
+            triggerSwipe('right');
           }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -276,7 +276,7 @@ const SwipeCard = ({ data, active, onSwipe, index }) => {
           className="action-btn reject"
           onClick={(e) => {
             e.stopPropagation();
-            triggerSwipe('right');
+            triggerSwipe('left');
           }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -365,12 +365,19 @@ const HeroSection = () => {
               className="btn btn-primary"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => document.getElementById('employer-problems')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Sign up <FiArrowRight />
+              FOR COMPANIES
             </motion.button>
-            
 
+            <motion.button 
+              className="btn btn-secondary"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => document.getElementById('candidate-problems')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              FOR CANDIDATES
+            </motion.button>
           </motion.div>
         </motion.div>
 

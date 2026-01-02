@@ -51,6 +51,33 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
+  padding: 1.2rem 2.5rem;
+}
+
+.hero-cta .btn-secondary {
+  background: white;
+  color: #5c89ff;
+  border: 1px solid #dde1e6;
+  box-shadow: none;
+}
+
+.hero-cta .btn-secondary:hover {
+  background: #f9fafc;
+  border-color: #5c89ff;
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero-cta .btn-secondary {
+    background: transparent;
+    color: var(--blue);
+    border: 1px solid var(--blue);
+  }
+  .hero-cta .btn-secondary:hover {
+    background: rgba(92, 137, 255, 0.1);
+  }
 }
 
 /* Swipe CardsContainer */
@@ -153,9 +180,9 @@
   padding: 0.5rem 2rem;
   border: 6px solid;
   border-radius: 16px;
-  font-size: 3.5rem;
+  font-size: 2.8rem;
   font-weight: 900;
-  letter-spacing: 4px;
+  letter-spacing: 2px;
   z-index: 100;
   pointer-events: none;
   text-transform: uppercase;
@@ -166,17 +193,17 @@
 }
 
 .swipe-indicator.accept {
-  right: 2rem;
+  left: 2rem;
   color: #22c55e;
   border-color: #22c55e;
-  transform: rotate(15deg);
+  transform: rotate(-15deg);
 }
 
 .swipe-indicator.reject {
-  left: 2rem;
+  right: 2rem;
   color: #ef4444;
   border-color: #ef4444;
-  transform: rotate(-15deg);
+  transform: rotate(15deg);
 }
 
 /* Swipe Instruction Text */
@@ -438,11 +465,6 @@
 @media (max-width: 768px) {
   .hero-section {
     padding-top: 6rem;
-  }
-  
-  .swipe-hand-container {
-      /* Reset specific sizing for mobile if needed, but inset: 0 should work fine. */
-      /* Maybe reduce padding or adjust wrapper positions */
   }
   
   .hand-wrapper.left-swipe {
