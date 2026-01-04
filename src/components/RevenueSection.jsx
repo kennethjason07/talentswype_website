@@ -8,20 +8,20 @@ const RevenueSection = () => {
       name: 'Monthly',
       price: '₹9,999',
       period: '/month',
-      features: ['1-month free trial', 'Priority support', 'Fast screening', 'Basic analytics'],
+      features: ['Priority support', 'Fast screening', 'Basic analytics'],
     },
     {
       name: 'Quarterly',
       price: '₹24,999',
       period: '/quarter',
       popular: true,
-      features: ['1-month free trial', 'Priority support', 'Fast screening', 'Advanced analytics', 'Same-day delivery'],
+      features: ['Priority support', 'Fast screening', 'Advanced analytics', 'Same-day delivery'],
     },
     {
       name: 'Annual',
       price: '₹89,999',
       period: '/year',
-      features: ['1-month free trial', 'Premium support', 'Fastest screening', 'Full analytics', 'Same-day delivery', 'Replacement guarantee'],
+      features: ['Premium support', 'Fastest screening', 'Full analytics', 'Same-day delivery', 'Replacement guarantee'],
     },
   ];
 
