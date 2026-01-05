@@ -45,6 +45,9 @@ const FoundingMember = () => {
                 },
                 theme: {
                     extend: {
+                        screens: {
+                            'xs': '400px',
+                        },
                         colors: {
                             brand: {
                                 dark: '#0f172a',
@@ -198,14 +201,14 @@ const FoundingMember = () => {
                                      e.target.nextElementSibling.style.display='flex';
                                  }} />
                             <div className="hidden w-8 h-8 rounded bg-gradient-to-tr from-blue-600 to-cyan-400 items-center justify-center text-white font-bold text-lg">T</div>
-                            <span className="text-white font-bold text-xl tracking-tight">TalentSwype</span>
+                            <span className="text-white font-bold text-lg sm:text-xl tracking-tight hidden xs:inline-block">TalentSwype</span>
                         </div>
                         <div className="hidden md:flex space-x-8">
                             <a href="#benefits" className="text-gray-300 hover:text-white transition">Benefits</a>
                             <a href="#tiers" className="text-gray-300 hover:text-white transition">Pricing</a>
                             <a href="#faq" className="text-gray-300 hover:text-white transition">FAQ</a>
                         </div>
-                        <button onClick={() => selectPlan('General Inquiry', 'general')} className="gold-gradient text-white px-5 py-2 rounded-full font-semibold shadow-lg hover:shadow-yellow-500/20 transition transform hover:-translate-y-0.5 text-sm cursor-pointer">
+                        <button onClick={() => selectPlan('General Inquiry', 'general')} className="gold-gradient text-white px-3 sm:px-5 py-1.5 sm:py-2 rounded-full font-semibold shadow-lg hover:shadow-yellow-500/20 transition transform hover:-translate-y-0.5 text-[11px] sm:text-sm cursor-pointer whitespace-nowrap">
                             Become a Founder
                         </button>
                     </div>
