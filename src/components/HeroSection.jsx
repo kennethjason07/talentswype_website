@@ -1,5 +1,6 @@
 import { motion, useAnimation, useMotionValue, useTransform, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FiArrowRight, FiMapPin, FiBriefcase, FiDollarSign } from 'react-icons/fi';
 import { MdTouchApp } from 'react-icons/md';
 import { FaRegHandPointer } from 'react-icons/fa6';
@@ -378,6 +379,20 @@ const HeroSection = () => {
             >
               FOR CANDIDATES
             </motion.button>
+
+            <Link to="/founder" style={{ textDecoration: 'none' }}>
+              <motion.button 
+                className="btn btn-primary founder-btn"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                style={{ 
+                  background: 'linear-gradient(135deg, #fbbf24 0%, #d97706 100%)',
+                  boxShadow: '0 8px 24px rgba(251, 191, 36, 0.4)'
+                }}
+              >
+                BECOME A FOUNDER
+              </motion.button>
+            </Link>
           </motion.div>
         </motion.div>
 

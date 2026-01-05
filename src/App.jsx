@@ -11,6 +11,7 @@ import BlogSection from './components/BlogSection';
 import Footer from './components/Footer';
 import BlogPage from './pages/BlogPage';
 import BlogPost from './pages/BlogPost';
+import FoundingMember from './pages/FoundingMember';
 import WhatsAppButton from './components/WhatsAppButton';
 import './App.css';
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogPost />} />
+        <Route path="/founder" element={<FoundingMember />} />
       </Routes>
       <WhatsAppButton />
     </div>
