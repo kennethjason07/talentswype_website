@@ -121,3 +121,21 @@
     font-size: 1rem;
   }
 }
+
+@media (max-width: 414px) {
+  .feature-card {
+    padding: 1rem;
+    gap: 1.25rem;
+    border-radius: 16px;
+  }
+
+  .feature-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.35rem;
+  }
+
+  .feature-card p {
+    font-size: 0.95rem;
+  }
+}

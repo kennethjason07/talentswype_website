@@ -94,11 +94,11 @@
   }
 
   .logo-image {
-    height: 50px;
+    height: 60px;
   }
 
   .navbar.scrolled .logo-image {
-    height: 42px;
+    height: 50px;
   }
 }
 
@@ -117,16 +117,16 @@
   }
 
   .logo-image {
-    height: 46px;
+    height: 50px;
   }
 
   .navbar.scrolled .logo-image {
-    height: 40px;
+    height: 42px;
   }
 
   .btn-small {
-    padding: 0.6rem 1.1rem;
-    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
   }
 }
 
@@ -137,15 +137,15 @@
   }
 
   .logo-image {
-    height: 42px;
+    height: 44px;
   }
 
   .navbar.scrolled .logo-image {
-    height: 36px;
+    height: 38px;
   }
 
   .btn-small {
-    padding: 0.55rem 1rem;
-    font-size: 0.85rem;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.8rem;
   }
 }

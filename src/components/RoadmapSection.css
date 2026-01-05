@@ -105,6 +105,8 @@
   .roadmap-timeline {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    max-width: calc(100vw - 2.5rem);
+    margin: 0 auto;
   }
 
   .roadmap-card {

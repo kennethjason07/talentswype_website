@@ -1,23 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { 
+    FaChalkboardTeacher, 
+    FaCrown, 
+    FaLinkedin, 
+    FaWhatsapp, 
+    FaChevronDown, 
+    FaCheckCircle, 
+    FaStar, 
+    FaVideo, 
+    FaWallet, 
+    FaCheck, 
+    FaTimes, 
+    FaClock, 
+    FaMobileAlt,
+    FaFileContract
+} from 'react-icons/fa';
 
 const FoundingMember = () => {
     const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
+    const [selectedPlan, setSelectedPlan] = useState(null);
+    const [isSelectionModalOpen, setIsSelectionModalOpen] = useState(false);
+    const [isReady, setIsReady] = useState(false);
 
     useEffect(() => {
-        // Load Font Awesome
-        const faLink = document.createElement('link');
-        faLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css';
-        faLink.rel = 'stylesheet';
-        document.head.appendChild(faLink);
+        if (window.tailwind) {
+            configureTailwind();
+            setTimeout(() => setIsReady(true), 0);
+        } else {
+            const tailwindScript = document.createElement('script');
+            tailwindScript.src = 'https://cdn.tailwindcss.com';
+            document.head.appendChild(tailwindScript);
 
-        // Load Tailwind CDN (isolated to this page if possible, but CDN is global)
-        const tailwindScript = document.createElement('script');
-        tailwindScript.src = 'https://cdn.tailwindcss.com';
-        document.head.appendChild(tailwindScript);
+            tailwindScript.onload = () => {
+                configureTailwind();
+                setIsReady(true);
+            };
+        }
 
-        tailwindScript.onload = () => {
+        function configureTailwind() {
             window.tailwind.config = {
+                corePlugins: {
+                    preflight: true,
+                },
                 theme: {
                     extend: {
                         colors: {
@@ -32,51 +57,96 @@ const FoundingMember = () => {
                     }
                 }
             };
-        };
+        }
 
         return () => {
-            // Clean up? Removing scripts might not undo CSS changes from Tailwind CDN
-            // document.head.removeChild(fontLink);
-            // document.head.removeChild(faLink);
-            // document.head.removeChild(tailwindScript);
+            // Cleanup: Remove Tailwind script and its injected styles
+            const scripts = document.querySelectorAll('script');
+            scripts.forEach(s => {
+                if (s.src.includes('cdn.tailwindcss.com')) {
+                    s.remove();
+                }
+            });
+
+            // Tailwind CDN injects style tags. We need to remove them to restore original fonts.
+            // It often puts them at the end of the head.
+            const styleTags = document.querySelectorAll('style');
+            styleTags.forEach(style => {
+                // Tailwind CDN tags usually have specific content or attributes
+                if (style.innerHTML.includes('--tw-') || style.textContent.includes('tailwindcss')) {
+                    style.remove();
+                }
+            });
+
+            // Restore the original font to the body explicitly to prevent any stickiness
+            document.body.style.fontFamily = '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif';
         };
     }, []);
 
     const selectPlan = (planName, price) => {
+        if (price === 'general') {
+            const phone = "919764840628";
+            const text = "Hi TalentSwype, I am interested in the Founding Member campaign. (Attaching screenshot of payment if completed)";
+            const encodedText = encodeURIComponent(text);
+            const link = `https://wa.me/${phone}?text=${encodedText}`;
+            window.open(link, '_blank');
+        } else {
+            setSelectedPlan({ name: planName, price: price });
+            setIsSelectionModalOpen(true);
+        }
+    };
+
+    const handlePayNow = () => {
+        if (!selectedPlan) return;
         const upiId = "skmusic5733@okicici";
         const payeeName = "TalentSwype";
-        const phone = "919764840628";
-        
-        // Handle UPI deep linking
-        if (price !== 'general') {
-            const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&am=${price}&cu=INR&tn=${encodeURIComponent('Founding Member - ' + planName)}`;
-            window.location.href = upiUrl;
-        }
+        const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&am=${selectedPlan.price}&cu=INR&tn=${encodeURIComponent('Founding Member - ' + selectedPlan.name)}`;
+        window.location.href = upiUrl;
+    };
 
-        let text = "";
-        if (price === 'general') {
-            text = "Hi TalentSwype, I am interested in the Founding Member campaign. (Attaching screenshot of payment if completed)";
-        } else {
-            text = `Hi TalentSwype, I have made the payment of ₹${price} for the ${planName} plan. (Attaching screenshot of payment)`;
-        }
-        
+    const handleSendProof = () => {
+        if (!selectedPlan) return;
+        const phone = "919764840628";
+        const text = `Hi TalentSwype, I have made the payment of ₹${selectedPlan.price} for the ${selectedPlan.name} plan. (Attaching screenshot of payment)`;
         const encodedText = encodeURIComponent(text);
         const link = `https://wa.me/${phone}?text=${encodedText}`;
-        
-        if (price === 'general') {
-            window.open(link, '_blank');
-        }
+        window.open(link, '_blank');
     };
 
     const openLegal = () => {
         setIsLegalModalOpen(true);
     };
 
+    if (!isReady) {
+        return (
+            <div className="min-h-screen bg-[#0f172a] flex items-center justify-center">
+                <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+            </div>
+        );
+    }
+
     return (
-        <div className="bg-slate-50 text-slate-800 antialiased">
+        <div className="founding-member-page bg-slate-50 text-slate-800 antialiased" style={{ opacity: isReady ? 1 : 0, transition: 'opacity 0.5s ease' }}>
             <style dangerouslySetInnerHTML={{ __html: `
                 .gold-gradient {
                     background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+                }
+                .footer-link {
+                    position: relative;
+                    transition: all 0.3s ease;
+                }
+                .footer-link::after {
+                    content: '';
+                    position: absolute;
+                    width: 0;
+                    height: 1px;
+                    bottom: -2px;
+                    left: 0;
+                    background-color: white;
+                    transition: width 0.3s ease;
+                }
+                .footer-link:hover::after {
+                    width: 100%;
                 }
                 .text-gold-gradient {
                     background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
@@ -154,7 +224,7 @@ const FoundingMember = () => {
                         Founding Member Access: Only 100 Spots Total
                     </div>
                     
-                    <h1 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6">
+                    <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6">
                         Launch Your Career with <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">India's Most Trusted Platform</span>
                     </h1>
@@ -192,7 +262,7 @@ const FoundingMember = () => {
                     <div className="grid md:grid-cols-3 gap-8">
                         <div className="p-8 rounded-2xl bg-slate-50 border border-slate-100 shadow-lg hover:shadow-xl transition">
                             <div className="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 text-2xl mb-6">
-                                <i className="fas fa-file-contract"></i>
+                                <FaFileContract />
                             </div>
                             <h3 className="text-xl font-bold text-gray-900 mb-3">ATS-Proof Resume</h3>
                             <p className="text-gray-600">90% of resumes are rejected by bots. We build you a professional resume that passes Applicant Tracking Systems guarantees.</p>
@@ -201,7 +271,7 @@ const FoundingMember = () => {
 
                         <div className="p-8 rounded-2xl bg-slate-50 border border-slate-100 shadow-lg hover:shadow-xl transition">
                             <div className="w-14 h-14 rounded-xl bg-purple-100 flex items-center justify-center text-purple-600 text-2xl mb-6">
-                                <i className="fas fa-chalkboard-teacher"></i>
+                                <FaChalkboardTeacher />
                             </div>
                             <h3 className="text-xl font-bold text-gray-900 mb-3">Expert Mentorship</h3>
                             <p className="text-gray-600">Get 1-on-1 guidance and mock interviews with real HR professionals to crack your next big opportunity.</p>
@@ -210,7 +280,7 @@ const FoundingMember = () => {
 
                         <div className="p-8 rounded-2xl bg-slate-50 border border-slate-100 shadow-lg hover:shadow-xl transition">
                             <div className="w-14 h-14 rounded-xl bg-yellow-100 flex items-center justify-center text-yellow-600 text-2xl mb-6">
-                                <i className="fas fa-crown"></i>
+                                <FaCrown />
                             </div>
                             <h3 className="text-xl font-bold text-gray-900 mb-3">2026 App Premium</h3>
                             <p className="text-gray-600">When we launch in April 2026, you get Profile Gold Frames, Video Resume access, and top visibility to recruiters.</p>
@@ -243,11 +313,11 @@ const FoundingMember = () => {
                             <div className="text-blue-400 text-xs font-bold mb-6 tracking-wide uppercase">Single Month Access</div>
 
                             <ul className="space-y-4 mb-8 text-gray-300 text-sm">
-                                <li className="flex items-center"><i className="fas fa-check text-blue-500 mr-2"></i> ATS-Friendly Resume</li>
-                                <li className="flex items-center"><i className="fas fa-check text-blue-500 mr-2"></i> Priority Job Access</li>
-                                <li className="flex items-center"><i className="fas fa-check text-blue-500 mr-2"></i> Industry Tips & Insights</li>
-                                <li className="flex items-center text-slate-600 opacity-60"><i className="fas fa-times mr-3 ml-1"></i> No Mentorship Session</li>
-                                <li className="flex items-center text-slate-600 opacity-60"><i className="fas fa-times mr-3 ml-1"></i> No Mock Interview</li>
+                                <li className="flex items-center"><FaCheck className="text-blue-500 mr-2" /> ATS-Friendly Resume</li>
+                                <li className="flex items-center"><FaCheck className="text-blue-500 mr-2" /> Priority Job Access</li>
+                                <li className="flex items-center"><FaCheck className="text-blue-500 mr-2" /> Industry Tips & Insights</li>
+                                <li className="flex items-center text-slate-600 opacity-60"><FaTimes className="mr-3 ml-1" /> No Mentorship Session</li>
+                                <li className="flex items-center text-slate-600 opacity-60"><FaTimes className="mr-3 ml-1" /> No Mock Interview</li>
                             </ul>
 
                             <button onClick={() => selectPlan('Career Starter (Monthly)', '99')} className="w-full py-3 rounded-lg bg-slate-700 hover:bg-slate-600 text-white font-semibold transition border border-slate-600 shadow-lg cursor-pointer">
@@ -275,17 +345,17 @@ const FoundingMember = () => {
                                 <div className="space-y-4 mb-8 flex-grow">
                                     <div className="font-bold text-gray-900 border-b pb-2">Immediate Benefits:</div>
                                     <ul className="space-y-3 text-gray-600 text-sm">
-                                        <li className="flex items-start"><i className="fas fa-check-circle text-yellow-500 mt-1 mr-2"></i> <span><strong>ATS-Friendly Resume</strong> (Guaranteed Pass)</span></li>
-                                        <li className="flex items-start"><i className="fas fa-check-circle text-yellow-500 mt-1 mr-2"></i> <span><strong>3-Month Course</strong> (3 Sessions)</span></li>
-                                        <li className="flex items-start"><i className="fas fa-check-circle text-yellow-500 mt-1 mr-2"></i> <span><strong>Mock Interview</strong> with HR</span></li>
-                                        <li className="flex items-start"><i className="fas fa-check-circle text-yellow-500 mt-1 mr-2"></i> <span><strong>Placement Support</strong> until Day 1</span></li>
+                                        <li className="flex items-start"><FaCheckCircle className="text-yellow-500 mt-1 mr-2 flex-shrink-0" /> <span><strong>ATS-Friendly Resume</strong> (Guaranteed Pass)</span></li>
+                                        <li className="flex items-start"><FaCheckCircle className="text-yellow-500 mt-1 mr-2 flex-shrink-0" /> <span><strong>3-Month Course</strong> (3 Sessions)</span></li>
+                                        <li className="flex items-start"><FaCheckCircle className="text-yellow-500 mt-1 mr-2 flex-shrink-0" /> <span><strong>Mock Interview</strong> with HR</span></li>
+                                        <li className="flex items-start"><FaCheckCircle className="text-yellow-500 mt-1 mr-2 flex-shrink-0" /> <span><strong>Placement Support</strong> until Day 1</span></li>
                                     </ul>
 
                                     <div className="font-bold text-gray-900 border-b pb-2 pt-2">2026 App Launch Bonus:</div>
                                     <ul className="space-y-3 text-gray-600 text-sm">
-                                        <li className="flex items-start"><i className="fas fa-star text-yellow-500 mt-1 mr-2"></i> <span><strong>1 Year Premium FREE</strong></span></li>
-                                        <li className="flex items-start"><i className="fas fa-crown text-yellow-500 mt-1 mr-2"></i> <span><strong>Gold Profile Frame</strong> & Top Visibility</span></li>
-                                        <li className="flex items-start"><i className="fas fa-video text-yellow-500 mt-1 mr-2"></i> <span><strong>Video Resume</strong> Feature Access</span></li>
+                                        <li className="flex items-start"><FaStar className="text-yellow-500 mt-1 mr-2 flex-shrink-0" /> <span><strong>1 Year Premium FREE</strong></span></li>
+                                        <li className="flex items-start"><FaCrown className="text-yellow-500 mt-1 mr-2 flex-shrink-0" /> <span><strong>Gold Profile Frame</strong> & Top Visibility</span></li>
+                                        <li className="flex items-start"><FaVideo className="text-yellow-500 mt-1 mr-2 flex-shrink-0" /> <span><strong>Video Resume</strong> Feature Access</span></li>
                                     </ul>
                                 </div>
 
@@ -310,9 +380,9 @@ const FoundingMember = () => {
                                 </div>
                                 <p className="text-xs text-green-400 mb-3 text-right">Rounded Offer (Save 95%)</p>
                                 <ul className="text-xs text-gray-300 space-y-1 mb-4">
-                                    <li className="flex items-center"><i className="fas fa-check text-blue-500 mr-2"></i> ATS Resume (2 Revisions)</li>
-                                    <li className="flex items-center"><i className="fas fa-check text-blue-500 mr-2"></i> Priority Job Access (3 Mo)</li>
-                                    <li className="flex items-center"><i className="fas fa-check text-blue-500 mr-2"></i> Industry Insights</li>
+                                    <li className="flex items-center"><FaCheck className="text-blue-500 mr-2" /> ATS Resume (2 Revisions)</li>
+                                    <li className="flex items-center"><FaCheck className="text-blue-500 mr-2" /> Priority Job Access (3 Mo)</li>
+                                    <li className="flex items-center"><FaCheck className="text-blue-500 mr-2" /> Industry Insights</li>
                                 </ul>
                                 <button onClick={() => selectPlan('Career Pro Lite (3 Months)', '249')} className="w-full py-2 rounded bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium transition cursor-pointer">Select 3 Months</button>
                             </div>
@@ -327,9 +397,9 @@ const FoundingMember = () => {
                                 </div>
                                 <p className="text-xs text-green-400 mb-3 text-right">Includes Mentorship!</p>
                                 <ul className="text-xs text-gray-300 space-y-1 mb-4">
-                                    <li className="flex items-center"><i className="fas fa-check text-blue-500 mr-2"></i> <strong>Everything in 3 Mo +</strong></li>
-                                    <li className="flex items-center"><i className="fas fa-check text-purple-400 mr-2"></i> <strong>1 Mentorship Session</strong></li>
-                                    <li className="flex items-center"><i className="fas fa-check text-purple-400 mr-2"></i> <strong>1 Mock Interview</strong></li>
+                                    <li className="flex items-center"><FaCheck className="text-blue-500 mr-2" /> <strong>Everything in 3 Mo +</strong></li>
+                                    <li className="flex items-center"><FaCheck className="text-purple-400 mr-2" /> <strong>1 Mentorship Session</strong></li>
+                                    <li className="flex items-center"><FaCheck className="text-purple-400 mr-2" /> <strong>1 Mock Interview</strong></li>
                                 </ul>
                                 <button onClick={() => selectPlan('Career Pro Lite (6 Months)', '499')} className="w-full py-2 rounded bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium transition cursor-pointer">Select 6 Months</button>
                             </div>
@@ -342,7 +412,7 @@ const FoundingMember = () => {
             <section className="bg-gradient-to-r from-red-600 to-red-700 py-4">
                 <div className="max-w-7xl mx-auto px-4 text-center">
                     <p className="text-white font-medium flex items-center justify-center gap-2">
-                        <i className="fas fa-clock"></i> 
+                        <FaClock /> 
                         Warning: Regular pricing of ₹499/month applies once these 100 spots are filled.
                     </p>
                 </div>
@@ -378,40 +448,40 @@ const FoundingMember = () => {
                     <h2 className="text-3xl font-bold text-center text-slate-900 mb-10">Frequently Asked Questions</h2>
                     
                     <div className="space-y-4">
-                        <details className="group bg-slate-50 p-4 rounded-lg border border-slate-200 cursor-pointer">
+                        <details className="group bg-slate-50 p-4 rounded-lg border border-slate-200 cursor-pointer text-left">
                             <summary className="flex justify-between items-center font-medium text-slate-800">
                                 <span>When will the TalentSwype App launch?</span>
-                                <span className="transition group-open:rotate-180"><i className="fas fa-chevron-down"></i></span>
+                                <span className="transition group-open:rotate-180"><FaChevronDown /></span>
                             </summary>
                             <div className="text-gray-600 mt-3 text-sm leading-relaxed">
                                 The full TalentSwype mobile application is scheduled to launch in April 2026. Founding members will receive their premium app benefits automatically upon launch.
                             </div>
                         </details>
 
-                        <details className="group bg-slate-50 p-4 rounded-lg border border-slate-200 cursor-pointer">
+                        <details className="group bg-slate-50 p-4 rounded-lg border border-slate-200 cursor-pointer text-left">
                             <summary className="flex justify-between items-center font-medium text-slate-800">
                                 <span>Does the ₹99 plan include the mock interview?</span>
-                                <span className="transition group-open:rotate-180"><i className="fas fa-chevron-down"></i></span>
+                                <span className="transition group-open:rotate-180"><FaChevronDown /></span>
                             </summary>
                             <div className="text-gray-600 mt-3 text-sm leading-relaxed">
                                 No, the ₹99/month plan includes the ATS Resume, Priority Job Access, and Industry Insights. The Mentorship Session and Mock Interview are available starting from the 6-Month Lite plan (₹499) and the Pro Plus plan (₹999).
                             </div>
                         </details>
 
-                        <details className="group bg-slate-50 p-4 rounded-lg border border-slate-200 cursor-pointer">
+                        <details className="group bg-slate-50 p-4 rounded-lg border border-slate-200 cursor-pointer text-left">
                             <summary className="flex justify-between items-center font-medium text-slate-800">
                                 <span>Is the payment one-time or recurring?</span>
-                                <span className="transition group-open:rotate-180"><i className="fas fa-chevron-down"></i></span>
+                                <span className="transition group-open:rotate-180"><FaChevronDown /></span>
                             </summary>
                             <div className="text-gray-600 mt-3 text-sm leading-relaxed">
                                 This is a one-time payment for the specific duration selected (1 month, 3 months, 6 months, or Lifetime Founder status). There are no auto-debits.
                             </div>
                         </details>
 
-                        <details className="group bg-slate-50 p-4 rounded-lg border border-slate-200 cursor-pointer">
+                        <details className="group bg-slate-50 p-4 rounded-lg border border-slate-200 cursor-pointer text-left">
                             <summary className="flex justify-between items-center font-medium text-slate-800">
                                 <span>How do I access the priority jobs?</span>
-                                <span className="transition group-open:rotate-180"><i className="fas fa-chevron-down"></i></span>
+                                <span className="transition group-open:rotate-180"><FaChevronDown /></span>
                             </summary>
                             <div className="text-gray-600 mt-3 text-sm leading-relaxed">
                                 Once you join, you will be added to our exclusive Founding Member distribution list where priority job openings are shared 3 days before they go public.
@@ -436,10 +506,10 @@ const FoundingMember = () => {
                         </div>
                         <div>
                             <h5 className="text-white font-bold mb-4">Legal</h5>
-                            <ul className="space-y-2 text-sm text-gray-400">
-                                <li><button onClick={openLegal} className="hover:text-white text-left">Privacy Policy</button></li>
-                                <li><button onClick={openLegal} className="hover:text-white text-left">Terms of Service</button></li>
-                                <li><button onClick={openLegal} className="hover:text-white text-left">Refund Policy</button></li>
+                            <ul className="space-y-3 text-sm text-gray-400">
+                                <li><a href="#privacy" onClick={(e) => { e.preventDefault(); openLegal(); }} className="footer-link hover:text-white inline-block">Privacy Policy</a></li>
+                                <li><a href="#terms" onClick={(e) => { e.preventDefault(); openLegal(); }} className="footer-link hover:text-white inline-block">Terms of Service</a></li>
+                                <li><a href="#refund" onClick={(e) => { e.preventDefault(); openLegal(); }} className="footer-link hover:text-white inline-block">Refund Policy</a></li>
                             </ul>
                         </div>
                         <div>
@@ -450,16 +520,63 @@ const FoundingMember = () => {
                             </ul>
                         </div>
                     </div>
-                    <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-                        <p className="text-gray-500 text-sm">© 2026 TalentSwype. All rights reserved.</p>
-                        <div className="flex space-x-4 mt-4 md:mt-0">
+                    <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-end items-center">
+                        <div className="flex space-x-4">
                             <a href="https://www.linkedin.com/company/talent-swype/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition transform hover:scale-110">
-                                <i className="fab fa-linkedin fa-lg"></i>
+                                <FaLinkedin className="text-2xl" />
                             </a>
                         </div>
                     </div>
                 </div>
             </footer>
+
+            {/* Selection Modal */}
+            {isSelectionModalOpen && (
+                <div className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+                    <div className="bg-white rounded-2xl max-w-sm w-full p-8 relative animate-fade-in-up">
+                        <button 
+                            onClick={() => setIsSelectionModalOpen(false)} 
+                            className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition"
+                        >
+                            <i className="fas fa-times text-xl"></i>
+                        </button>
+                        
+                        <div className="text-center">
+                            <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-600">
+                                <FaWallet className="text-2xl" />
+                            </div>
+                            
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Complete Your Payment</h3>
+                            <p className="text-gray-500 text-sm mb-8">
+                                Selected: <span className="font-semibold text-gray-900">{selectedPlan?.name}</span> (₹{selectedPlan?.price})
+                            </p>
+
+                            <div className="space-y-4">
+                                <button 
+                                    onClick={handlePayNow}
+                                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl shadow-lg transition transform hover:-translate-y-1"
+                                >
+                                    <FaMobileAlt className="inline-block mr-2" /> Pay Now via UPI
+                                </button>
+                                
+                                <button 
+                                    onClick={handleSendProof}
+                                    className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-4 rounded-xl shadow-lg transition transform hover:-translate-y-1"
+                                >
+                                    <FaWhatsapp className="inline-block mr-2" /> Send Proof on WhatsApp
+                                </button>
+                            </div>
+
+                            <button 
+                                onClick={() => setIsSelectionModalOpen(false)}
+                                className="mt-6 text-gray-400 hover:text-gray-600 text-sm font-medium"
+                            >
+                                Back to Plans
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Legal Modal */}
             {isLegalModalOpen && (
@@ -468,7 +585,7 @@ const FoundingMember = () => {
                         <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-slate-50 rounded-t-xl">
                             <h3 className="text-xl font-bold text-gray-900">Legal Information</h3>
                             <button onClick={() => setIsLegalModalOpen(false)} className="text-gray-400 hover:text-red-500 transition cursor-pointer">
-                                <i className="fas fa-times text-xl"></i>
+                                <FaTimes className="text-xl" />
                             </button>
                         </div>
 

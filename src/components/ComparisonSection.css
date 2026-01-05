@@ -213,3 +213,28 @@
     align-items: center;
   }
 }
+
+@media (max-width: 414px) {
+  .comparison-row {
+    padding: 1.5rem 1rem;
+    gap: 1.25rem;
+  }
+
+  .col-feature {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .col-traditional, .col-swype {
+    padding: 1rem;
+  }
+
+  .mobile-label {
+    font-size: 0.7rem;
+    margin-bottom: 8px;
+  }
+
+  .val-text {
+    font-size: 0.9rem;
+  }
+}

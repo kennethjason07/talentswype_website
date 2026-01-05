@@ -29,9 +29,9 @@
 }
 
 .hero-text h1 {
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  margin-bottom: 1rem;
-  line-height: 1.1;
+  font-size: clamp(1.85rem, 8vw, 3.5rem);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
 }
 
 .hero-subtitle {
@@ -149,12 +149,12 @@
   position: absolute;
   width: 380px;
   padding: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(30, 30, 30, 0.95) 0%, rgba(13, 15, 19, 0.9) 100%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-radius: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
   transform-origin: 50% 100%;
   touch-action: none;
   overflow: hidden;
@@ -162,15 +162,7 @@
 }
 
 .swipe-card:hover {
-  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .swipe-card {
-    background: linear-gradient(135deg, rgba(30, 30, 30, 0.95) 0%, rgba(26, 29, 36, 0.9) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
 }
 
 /* Swipe Indicators */
@@ -494,6 +486,7 @@
   
   .swipe-card {
     width: 320px;
+    max-width: calc(100vw - 3rem);
   }
 
   .card-avatar {
@@ -523,7 +516,8 @@
   }
 
   .swipe-card {
-    width: 300px;
+    width: 290px;
+    max-width: calc(100vw - 2.5rem);
   }
 
   .card-header {
@@ -551,7 +545,8 @@
   }
 
   .swipe-card {
-    width: 280px;
+    width: 270px;
+    max-width: calc(100vw - 2rem);
   }
 
   .card-avatar {

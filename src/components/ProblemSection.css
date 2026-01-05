@@ -22,7 +22,7 @@
 }
 
 .problem-section {
-  padding: 8rem 0;
+  padding: clamp(3.5rem, 10vw, 8rem) 0;
 }
 
 .problem-section.candidate-problems {
@@ -110,7 +110,8 @@
 
   .problem-card {
     padding: 1.125rem;
-    gap: 1.25rem;
+    gap: 1rem;
+    border-radius: 16px;
   }
 }
 
