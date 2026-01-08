@@ -1,0 +1,23 @@
+{
+  "name": "TalentSwype - India's Fastest Recruitment Platform",
+  "short_name": "TalentSwype",
+  "description": "India's fastest, most transparent recruitment ecosystem with swipe-based UX and AI + Human screening",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "theme_color": "#FF6B35",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
+}
