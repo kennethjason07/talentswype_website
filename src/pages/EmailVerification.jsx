@@ -60,10 +60,6 @@ const EmailVerification = () => {
           <h1>Email Verified!</h1>
           <p>Your email has been successfully verified.</p>
           <p className="sub-text">You can now return to the app and login.</p>
-          
-          <Link to="/" className="return-link">
-            Return to Home
-          </Link>
         </motion.div>
       </div>
 

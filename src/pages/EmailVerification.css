@@ -88,22 +88,6 @@
   margin-bottom: 2rem;
 }
 
-.return-link {
-  color: var(--blue);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  background: rgba(92, 137, 255, 0.05);
-}
-
-.return-link:hover {
-  color: var(--blue-dark);
-  background: rgba(92, 137, 255, 0.1);
-  transform: translateY(-1px);
-}
 
 /* Background Gradients */
 .bg-glow {
