@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import BlogPage from './pages/BlogPage';
 import BlogPost from './pages/BlogPost';
 import FoundingMember from './pages/FoundingMember';
+import EmailVerification from './pages/EmailVerification';
 import WhatsAppButton from './components/WhatsAppButton';
 import './App.css';
 
@@ -38,6 +39,7 @@ function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="/founder" element={<FoundingMember />} />
+        <Route path="/verify-email" element={<EmailVerification />} />
         {/* Catch-all route - redirect to home */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
