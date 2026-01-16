@@ -58,11 +58,11 @@ const EmailVerification = () => {
           transition={{ delay: 0.5, duration: 0.6 }}
         >
           <h1>Email Verified!</h1>
-          <p>Ready to Swype? Your email has been successfully verified.</p>
-          <p className="sub-text">You can now return to the app and login to start matching.</p>
+          <p>Your email has been successfully verified.</p>
+          <p className="sub-text">You can now return to the app and login.</p>
           
-          <Link to="/" className="btn btn-primary return-btn">
-            Return to App
+          <Link to="/" className="return-link">
+            Return to Home
           </Link>
         </motion.div>
       </div>
